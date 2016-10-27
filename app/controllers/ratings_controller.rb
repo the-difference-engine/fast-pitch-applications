@@ -30,7 +30,7 @@ class RatingsController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
     @questions = Question.all
-    @answers = Answer.where(user_id: @user.id)
+    @answers = Answer.find_by(user_id: @user.id)
 
   end
 
