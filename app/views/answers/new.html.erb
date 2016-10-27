@@ -1,0 +1,18 @@
+<center><h2> Fast Pitch Form </h2></center>
+<% @questions.each do |question| %>
+  <fieldset>
+    <div class="form-group">
+      <h3><label for="textArea" class="col-lg-10 control-label"><%= question.question %></label></h3>
+      <div class="col-lg-10">
+        <textarea class="form-control" rows="7" id="textArea"></textarea>
+    </div>
+      </fieldset>
+    <% end %>
+    <%= form_for @answer do |f| %>
+    <%= paginate @questions %>
+    <div class="form-group">
+      <%= f.submit "Submit", class: "btn btn-success" %>
+    </div>
+  </fieldset>
+</form>
+<% end %>
