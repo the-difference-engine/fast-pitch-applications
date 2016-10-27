@@ -45,3 +45,25 @@ Question.create(
 Question.create(
   question: "What types of services (broadly speaking) does your organization provide?"
 )
+
+User.create(
+  name: "Hope NY",
+  contact_name: "Lebron James",
+  email: "hopeny@example.com",
+  phone_number: "(718)542-4213",
+  tax_exempt: true
+)
+
+Admin.create(
+  name: "Harper Coven",
+  email: "admin4@example.com",
+  encrypted_password: "password",
+  super_admin: false
+)
+
+Admin.create(
+  name: "Summer Jones",
+  email: "admin5@example.com",
+  encrypted_password: "password",
+  super_admin: true
+)
