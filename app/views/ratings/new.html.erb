@@ -13,10 +13,13 @@
         <input type="nonprofitorganization" class="form-control" id="inputNonprofitOrganization" placeholder="Nonprofit Organization Name">
       </div>
     </div>
-      <%= 5.times do %>
-        User Input
-        Question
-        <br>
+
+<%= @questions.each do |q| %>
+  <div><%= q.question %></div>
+  <div><%=  q.answer %></div>
+<% end %>
+
+  <%= 5.times do %>
     <div class="form-group">
       <label for="select" class="col-lg-2 control-label">Ratings</label>
       <div class="col-lg-10">
@@ -30,7 +33,8 @@
         <br>
       </div>
     </div>
-    <% end %>
+  <% end %>
+
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
         <button type="reset" class="btn btn-default">Cancel</button>
