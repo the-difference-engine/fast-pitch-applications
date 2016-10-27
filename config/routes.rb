@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   get 'ratings/new' => 'ratings#new'
   post 'ratings' => 'ratings#create'
+  get 'ratings/:id' => 'ratings#show'
 
   get '/admins' => 'admins#index'
 
