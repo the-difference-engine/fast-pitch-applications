@@ -1,0 +1,8 @@
+<div><%= @user.name %></div>
+<%= @user.contact_name %>
+
+<% @questions.each do |question| %>
+  <div><%= question.question_text %></div><br>
+    <%= @answers.answer_text %>
+</div><br>
+<% end %>
