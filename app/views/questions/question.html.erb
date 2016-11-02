@@ -1,0 +1,7 @@
+<%= div_for question, class: 'col-md-8 col-md-offset-2' do %>
+  <h2><%= question.question %></h2>
+  <p><%= question.answer %></p>
+  <p>
+    <%= link_to "Edit", edit_question_path(question)  %>
+  </p>
+<% end  %>
