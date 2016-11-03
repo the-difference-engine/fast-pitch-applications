@@ -1,16 +1,12 @@
-<div><%= @user.name %></div>
-<%= @user.contact_name %>
+<h1 align="center"><div><%= @user.name %></div></h1>
+<h2 align="center"><%= @user.contact_name %></h2>
+<br>
+<div></div>
 
-<% @answers.each do |answer| %>
-  <div><%= answer.question.question_text %></div>
-  <div><%= answer %></div>
-<% end %>
+<% @answers.each_with_index do |answer, index| %>
 
-
-
-<% @questions.each do |question| %>
-  <div><%= question.question_text %></div><br>
-
-
-</div><br>
+  <div><%= index +1 %>. <%= answer.question.question_text %></div>
+  <br>
+  <div><%= answer.answer_text %></div>
+  <br>
 <% end %>
