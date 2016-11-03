@@ -1,49 +1,49 @@
 Question.create(
-  question: "Briefly describe what your organization does. What product(s) and/or services(s) does your nonprofit offer?"
+  question_text: "Briefly describe what your organization does. What product(s) and/or services(s) does your nonprofit offer?"
 )
 
 Question.create(
-  question: "List the social issues your nonprofit addresses."
+  question_text: "List the social issues your nonprofit addresses."
 )
 
 Question.create(
-  question: "Why do you believe that your nonprofit can make a meaningful impact in addressing the issues identified above?"
+  question_text: "Why do you believe that your nonprofit can make a meaningful impact in addressing the issues identified above?"
 )
 
 Question.create(
-  question: "What differentiates you from other organizations working to address the same issues?"
+  question_text: "What differentiates you from other organizations working to address the same issues?"
 )
 
 Question.create(
-  question: "What demographic does your nonprofit serve?"
+  question_text: "What demographic does your nonprofit serve?"
 )
 
 Question.create(
-  question: "How do you measure the impact of your nonprofit? Please share any relevant statistics."
+  question_text: "How do you measure the impact of your nonprofit? Please share any relevant statistics."
 )
 
 Question.create(
-  question: "What are the top 3 strategic goals for your nonprofit in the coming year?"
+  question_text: "What are the top 3 strategic goals for your nonprofit in the coming year?"
 )
 
 Question.create(
-  question: "What are your organization's sources of revenue?"
+  question_text: "What are your organization's sources of revenue?"
 )
 
 Question.create(
-  question: "How many full time (FTE equivalent) employees do you employ?"
+  question_text: "How many full time (FTE equivalent) employees do you employ?"
 )
 
 Question.create(
-  question: "What is your current Elevator Pitch?"
+  question_text: "What is your current Elevator Pitch?"
 )
 
 Question.create(
-  question: "How would your organization benefit from participating in the fast pitch?"
+  question_text: "How would your organization benefit from participating in the fast pitch?"
 )
 
 Question.create(
-  question: "What types of services (broadly speaking) does your organization provide?"
+  question_text: "What types of services (broadly speaking) does your organization provide?"
 )
 
 User.create(
