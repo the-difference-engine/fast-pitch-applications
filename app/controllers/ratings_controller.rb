@@ -1,5 +1,6 @@
 class RatingsController < ApplicationController
   before_action :authenticate_admin!
+  require 'pry'
 
   def new
     @user = User.find_by(id: params[:id])
@@ -30,7 +31,8 @@ class RatingsController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
     @questions = Question.all
-    @answers = Answer.find_by(user_id: @user.id)
+    @answers = Answer.where(user_id: @user.id)
+
   end
 
 end
