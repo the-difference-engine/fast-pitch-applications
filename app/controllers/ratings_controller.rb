@@ -1,6 +1,5 @@
 class RatingsController < ApplicationController
   before_action :authenticate_admin!
-  require 'pry'
 
   def new
     @user = User.find_by(id: params[:id])
