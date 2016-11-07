@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+  before_filter :authenticate_super_admin, only: [:new, :create, :edit, :update, :destroy]
+
   def index
     @questions = Question.order("updated_at DESC")
   end
@@ -8,13 +10,16 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.new(question_params) #this will generate a question object
-    # binding.pry
+    @question = Question.new(question_params) # this will generate a question object
     if @question.save
       redirect_to questions_path
     else
       #render form again
     end
+  end
+
+  def show
+    redirect_to "/questions"
   end
 
   def edit
@@ -32,12 +37,7 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question = Question.where(id: params[:id]).first
-    if @question.destroy
-      redirect_to questions_path
-    else
-
-    end
-  end 
+  end
 
   private
 

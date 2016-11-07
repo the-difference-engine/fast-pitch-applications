@@ -13,4 +13,5 @@ Rails.application.routes.draw do
 
   get '/register' => 'users#register'
   post '/user' => 'users#create'
+  get '/application/:token' => 'users#show' 
 end
