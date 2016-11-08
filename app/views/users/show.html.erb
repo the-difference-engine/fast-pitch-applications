@@ -2,7 +2,7 @@
 <%= form_for :answers, url: { action: :create } do |f| %>
 <% @questions.each do |question| %>
   <%= f.label(question.question_text) %>
-  <%= f.text_area(question.id) %>
+  <div><%= f.text_area(question.id) %></div>
 <% end %>
 
 <div class="form-group">

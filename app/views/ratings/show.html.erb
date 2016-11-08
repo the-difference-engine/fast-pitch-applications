@@ -1,0 +1,14 @@
+<div><%= @user.name %></div>
+<%= @user.contact_name %>
+</div><br>
+<h1 align="center"><div><%= @user.name %></div></h1>
+<h2 align="center"><%= @user.contact_name %></h2>
+<br>
+
+<% @answers.each_with_index do |answer, index| %>
+
+  <div><%= index +1 %>. <%= answer.question.question_text %></div>
+  <br>
+  <div><%= answer.answer_text %></div>
+  <br>
+<% end %>
