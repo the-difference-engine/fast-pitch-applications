@@ -19,7 +19,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    redirect_to "/questions"
+    render questions_path
   end
 
   def edit
@@ -37,11 +37,13 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question = Question.where(id: params[:id]).first
+    @question.destroy
+    redirect_to questions_path
   end
 
   private
 
   def question_params
-    params.require(:question).permit(:question, :answer)
+    params.require(:question).permit(:question_text, :answer)
   end
 end
