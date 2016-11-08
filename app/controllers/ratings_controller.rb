@@ -31,7 +31,6 @@ class RatingsController < ApplicationController
     @user = User.find_by(id: params[:id])
     @questions = Question.all
     @answers = Answer.find_by(user_id: @user.id)
-
   end
 
 end
