@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   validates :email, :name, :contact_name, :phone_number, presence: true
   validates :email, uniqueness: true
-  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i } #validates(*attributes)
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
 
   after_create :generate_token
 

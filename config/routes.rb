@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   get 'ratings/:id' => 'ratings#show'
 
   get '/admins' => 'admins#index'
+  get '/admins/my_ratings' => 'admins#my_ratings'
 
   get '/register' => 'users#register'
   post '/user' => 'users#create'
+  get '/application/:token' => 'users#show'
 end
