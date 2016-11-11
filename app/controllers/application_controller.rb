@@ -10,7 +10,14 @@ class ApplicationController < ActionController::Base
   def authenticate_super_admin
     @admin = Admin.find_by(id: current_admin.id)
     unless @admin.super_admin == true
-    redirect_to "/questions"
+      redirect_to '/questions'
+    end
+  end
+
+  def expire
+    if Time.new(2016, 11, 10, 7, 10, 00, "+02:00") < Time.current
+      redirect_to '/'
+      flash[:warning] = 'Invalid Token'
     end
   end
 end
