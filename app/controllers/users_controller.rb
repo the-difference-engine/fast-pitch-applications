@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user, only: [:show]
+  before_action :expire, only: [:show, :authenticate_user]
 
   def register
     @user = User.new
@@ -22,10 +23,7 @@ class UsersController < ApplicationController
 
   def show
     @questions = Question.all
-
   end
-
-  private
 
   def authenticate_user
     @user = User.find_by(token: params[:token])
