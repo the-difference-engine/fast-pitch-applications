@@ -25,6 +25,8 @@ class UsersController < ApplicationController
     @questions = Question.all
   end
 
+  private
+
   def authenticate_user
     @user = User.find_by(token: params[:token])
     unless @user
