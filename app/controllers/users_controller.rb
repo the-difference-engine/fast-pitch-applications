@@ -23,7 +23,6 @@ class UsersController < ApplicationController
 
   def show
     @questions = Question.all
-
   end
 
   def authenticate_user
