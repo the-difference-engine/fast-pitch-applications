@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161027165240) do
+ActiveRecord::Schema.define(version: 20161028002534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,16 +37,15 @@ ActiveRecord::Schema.define(version: 20161027165240) do
   create_table "answers", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "question_id"
-    t.text     "answer"
+    t.text     "answer_text"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
   create_table "questions", force: :cascade do |t|
-    t.text     "question"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text     "answer"
+    t.text     "question_text"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -68,8 +67,9 @@ ActiveRecord::Schema.define(version: 20161027165240) do
     t.string   "email"
     t.string   "phone_number"
     t.string   "token"
-    t.boolean  "status"
+    t.boolean  "tax_exempt"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
+
 end

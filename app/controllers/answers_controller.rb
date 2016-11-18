@@ -6,22 +6,17 @@ class AnswersController < ApplicationController
   end
 
   def new
-    @questions = Question.page(params[:page]).per(4)
+    @questions = Question.all
     @answer = Answer.new
   end
 
   def create
-    @answer = Answer.new(answer_params)
-    if @answer.save
-      redirect_to answers_path
-    # else
-       #render form again
+    params[:answers].each do |k, v|
+      Answer.create(
+        user_id,
+        question_id,
+        answer
+      )
     end
-  end
-
-  private
-
-  def answer_params
-    params.require(:answer).permit(:answer)
   end
 end
