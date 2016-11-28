@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
   before_filter :authenticate_super_admin, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @questions = Question.order("updated_at DESC")
+    @questions = Question.order("id")
   end
 
   def new
