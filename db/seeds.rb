@@ -1,7 +1,7 @@
-<<<<<<< HEAD
-=======
+# <<<<<<< HEAD
+# =======
 require 'pry'
->>>>>>> f9f1856409bf8147a38ee0b86372214513647374
+# >>>>>>> f9f1856409bf8147a38ee0b86372214513647374
 def seed_database
   seed_questions
   seed_user
@@ -50,8 +50,8 @@ def seed_user
     phone_number: "(718)542-4213",
     tax_exempt: true
   )
-<<<<<<< HEAD
-=======
+# <<<<<<< HEAD
+# =======
 
   User.create(
     name: "Greenpoint",
@@ -68,7 +68,7 @@ def seed_user
     phone_number: "(347) 123-4567",
     tax_exempt: true
   )
->>>>>>> f9f1856409bf8147a38ee0b86372214513647374
+# >>>>>>> f9f1856409bf8147a38ee0b86372214513647374
 end
 
 def seed_admin
@@ -104,7 +104,7 @@ end
 
 def seed_answer
   Answer.destroy_all
-<<<<<<< HEAD
+# <<<<<<< HEAD
   Answer.create(user_id: 1, question_id: 1, answer_text: "1bark bark bark")
   Answer.create(user_id: 1, question_id: 2, answer_text: "b2ark bark bark")
   Answer.create(user_id: 1, question_id: 3, answer_text: "ba3rk bark bark")
@@ -139,7 +139,7 @@ def seed_answer
   Answer.create(user_id: 3, question_id: 10, answer_text: "chirp10 chirp chirp")
 end
 
-=======
+# =======
   questions = Question.all
 
   user = User.first
@@ -160,5 +160,5 @@ end
 end
 
 
->>>>>>> f9f1856409bf8147a38ee0b86372214513647374
+# >>>>>>> f9f1856409bf8147a38ee0b86372214513647374
 seed_database
