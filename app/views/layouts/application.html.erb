@@ -56,6 +56,11 @@
             <li><%= link_to "Log out", destroy_admin_session_path, method: :delete %>
             <% end %>
 
+            <% if current_applicant %>
+            <li><%= link_to "Applicant Log out", destroy_applicant_session_path, method: :delete %>
+            <% end %>
+
+
           </ul>
         </li>
       </ul>
