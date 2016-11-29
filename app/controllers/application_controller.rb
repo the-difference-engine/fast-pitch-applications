@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
     "/"
   end
 
+  def after_new_applicant_session_path_for(resource)
+    new_answer_path
+  end
+
   def authenticate_super_admin
     @admin = Admin.find_by(id: current_admin.id)
     unless @admin.super_admin == true
