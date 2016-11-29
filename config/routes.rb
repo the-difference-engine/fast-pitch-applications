@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :applicants
   resources :answers
   resources :questions
   devise_for :admins
@@ -8,6 +9,8 @@ Rails.application.routes.draw do
   get 'ratings/new' => 'ratings#new'
   post 'ratings' => 'ratings#create'
   get 'ratings/:id' => 'ratings#show'
+
+  get '/applicants' => 'applicants#index'
 
   get '/admins' => 'admins#index'
   get '/admins/my_ratings' => 'admins#my_ratings'
