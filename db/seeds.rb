@@ -157,8 +157,6 @@ end
   questions.each do |q|
     Answer.create(user_id: user.id, question_id: q.id, answer_text: Faker::StarWars.quote)
   end
-end
-
 
 # >>>>>>> f9f1856409bf8147a38ee0b86372214513647374
 seed_database
