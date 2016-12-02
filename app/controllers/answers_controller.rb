@@ -11,12 +11,17 @@ class AnswersController < ApplicationController
   end
 
   def create
-    params[:answers].each do |k, v|
-      Answer.create(
-        user_id: current_user.id,
-        questions_id: questions.id,
-        answer_text: params[answer_text]
+    params[:answers].each do |question_id, answer_text|
+      @answer = Answer.create(
+        applicant_id: current_applicant.id,
+        question_id: question_id,
+        answer_text: answer_text
       )
+    if @answer.valid?
+      redirect_to "/answers/new"
+    else
+      render "index"
     end
+  end
   end
 end
