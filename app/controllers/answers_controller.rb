@@ -13,9 +13,9 @@ class AnswersController < ApplicationController
   def create
     params[:answers].each do |k, v|
       Answer.create(
-        user_id,
-        question_id,
-        answer
+        user_id: current_user.id,
+        questions_id: questions.id,
+        answer_text: params[answer_text]
       )
     end
   end
