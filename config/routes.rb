@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post 'ratings' => 'ratings#create'
   get 'ratings/:id' => 'ratings#show'
 
-  get '/applicants' => 'applicants#index'
+  
 
   get '/admins' => 'admins#index'
   get '/admins/my_ratings' => 'admins#my_ratings'

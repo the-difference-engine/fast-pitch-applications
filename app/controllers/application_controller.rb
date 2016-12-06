@@ -3,12 +3,12 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def after_new_admin_session_path_for(resource)
-    "/admins"
-  end
-
-  def after_new_applicant_registration_path_for(resource)
-    "/"
+  def after_sign_in_path_for(resource)
+    if resource_name == :admin
+       '/admins'
+    elsif resource_name == :applicant
+       '/answers/new'
+    end
   end
 
   def authenticate_super_admin
