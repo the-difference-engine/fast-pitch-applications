@@ -7,21 +7,29 @@ class AnswersController < ApplicationController
 
   def new
     @questions = Question.all
-    @answer = Answer.new
   end
 
   def create
+    saved_answer = []
+    @questions = Question.all
+
     params[:answers].each do |question_id, answer_text|
-      @answer = Answer.create(
+      @answer = Answer.new(
         applicant_id: current_applicant.id,
         question_id: question_id,
         answer_text: answer_text
       )
-    if @answer.valid?
-      redirect_to "/answers/new"
-    else
-      render "index"
+
+      if @answer.save
+        saved_answer << @answer
+      else
+        render("/answers/new")
+         return
+      end
     end
+
+    redirect_to "/"
   end
-  end
+
+
 end
