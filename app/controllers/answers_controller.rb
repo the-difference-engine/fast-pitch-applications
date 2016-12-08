@@ -9,6 +9,11 @@ class AnswersController < ApplicationController
     @questions = Question.all
   end
 
+  def show
+    @questions = Question.all
+    @answers = Answer.where(applicant_id: current_applicant.id)
+  end
+
   def create
     saved_answer = []
     @questions = Question.all
@@ -31,5 +36,17 @@ class AnswersController < ApplicationController
     redirect_to "/"
   end
 
+  def edit
+    @answer = Answer.find_by(id: params[:id])
+  end
+
+  def update
+    @answer = Answer.find_by(id: params[:id])
+    if @answer.update
+      redirect_to '/answers'
+    else
+      render 'edit'
+    end
+  end
 
 end
