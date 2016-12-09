@@ -1,6 +1,6 @@
-<%= form_for :answers, url: { action: :update } do |f| %>
+<%= form_for @answer, :url => answer_path(@answer), :method => :put do |f| %>
     <%= f.label(@answer.question.question_text) %>
-    <%= f.text_area(@answer.answer_text) %>
+    <%= f.text_area(:answer_text) %>
 
 
 <div class="form-group">

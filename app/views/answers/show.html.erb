@@ -1,5 +1,5 @@
 <% @answers.each do |answer| %>
   <p><b><%= answer.question.question_text %> :</b> <br>
   <%= answer.answer_text %></p>
-  <%= link_to "Edit Answer", edit_answer_path %>
+  <%= link_to "Edit Answer", edit_answer_path(answer) %>
 <% end %>

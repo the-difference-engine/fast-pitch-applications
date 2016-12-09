@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-
+require 'pry'
   def index
     @questions = Question.all
     @answers = Answer.all
@@ -11,7 +11,8 @@ class AnswersController < ApplicationController
 
   def show
     @questions = Question.all
-    @answers = Answer.where(applicant_id: current_applicant.id)
+    # binding.pry
+    @answers = Answer.where(applicant_id: current_applicant.id).order("id ASC")
   end
 
   def create
@@ -42,8 +43,9 @@ class AnswersController < ApplicationController
 
   def update
     @answer = Answer.find_by(id: params[:id])
-    if @answer.update
-      redirect_to '/answers'
+    # binding.pry
+    if @answer.update(answer_text: params[:answer][:answer_text])
+      redirect_to '/answers/edit'
     else
       render 'edit'
     end
