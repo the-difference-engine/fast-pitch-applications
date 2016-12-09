@@ -1,4 +1,7 @@
 <h1>Apply To Fast Pitch</h1>
 
-<a href="/answers/new" class="btn btn-primary btn-lg">Start Application</a>
-<a href="/answers/edit" class="btn btn-primary btn-lg">Edit Application</a>
+<% if @applicant.answers.count > 0%>
+  <a href="/answers/edit" class="btn btn-primary btn-lg">Edit Application</a>
+<% else %>
+  <a href="/answers/new" class="btn btn-primary btn-lg">Start Application</a>
+<% end %>

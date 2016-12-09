@@ -1,8 +1,7 @@
 class AnswersController < ApplicationController
 require 'pry'
   def index
-    @questions = Question.all
-    @answers = Answer.all
+    @applicant = current_applicant
   end
 
   def new
