@@ -1,5 +1,7 @@
-<h1> FastPitch Questions </h1>
+<h1>Apply To Fast Pitch</h1>
 
-<% @questions.each do |question| %>
-<li><%= question.question_text %></li>
+<% if @applicant.answers.count > 0%>
+  <a href="/answers/edit" class="btn btn-primary btn-lg">Edit Application</a>
+<% else %>
+  <a href="/answers/new" class="btn btn-primary btn-lg">Start Application</a>
 <% end %>

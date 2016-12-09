@@ -53,7 +53,8 @@
               <li><a href="/applicants/sign_up">Applicant Sign Up</a></li>
             <% end %>
             <% if current_applicant %>
-            <li><%= link_to "Applicant Log out", destroy_applicant_session_path, method: :delete %>
+              <li><%= link_to "Application Home", answers_path %></li>
+              <li><%= link_to "Applicant Log out", destroy_applicant_session_path, method: :delete %>
             <% end %>
           </ul>
         </li>

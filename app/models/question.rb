@@ -1,6 +1,6 @@
 class Question < ApplicationRecord
   has_many :answers
-  has_many :users, through: :answers
+  has_many :applicants, through: :answers
 
   # This is where we write the word count checker method
   # validate for under word count

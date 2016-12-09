@@ -1,12 +1,17 @@
 class AnswersController < ApplicationController
-
+require 'pry'
   def index
-    @questions = Question.all
-    @answers = Answer.all
+    @applicant = current_applicant
   end
 
   def new
     @questions = Question.all
+  end
+
+  def show
+    @questions = Question.all
+    # binding.pry
+    @answers = Answer.where(applicant_id: current_applicant.id).order("id ASC")
   end
 
   def create
@@ -31,5 +36,18 @@ class AnswersController < ApplicationController
     redirect_to "/"
   end
 
+  def edit
+    @answer = Answer.find_by(id: params[:id])
+  end
+
+  def update
+    @answer = Answer.find_by(id: params[:id])
+    # binding.pry
+    if @answer.update(answer_text: params[:answer][:answer_text])
+      redirect_to '/answers/edit'
+    else
+      render 'edit'
+    end
+  end
 
 end
