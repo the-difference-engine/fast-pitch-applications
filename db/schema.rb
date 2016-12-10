@@ -59,6 +59,14 @@ ActiveRecord::Schema.define(version: 20161209012557) do
     t.index ["reset_password_token"], name: "index_applicants_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "projects", force: :cascade do |t|
+    t.integer  "applicant_id"
+    t.integer  "question_id"
+    t.integer  "answer_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "questions", force: :cascade do |t|
     t.text     "question_text"
     t.datetime "created_at",      null: false
