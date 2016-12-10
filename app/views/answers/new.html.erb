@@ -2,8 +2,18 @@
 
 <%= form_for :answers, url: { action: :create } do |f| %>
 <% @questions.each do |question| %>
-  <%= f.label(question.question_text) %>
-  <%= f.text_area(question.id) %><br>
+    <%= f.label(question.question_text) %>
+  <% if question.closed_question == true  %>
+      <div class="radio">
+        <label><input type="radio" name="optradio">Yes</label>
+      </div>
+      <div class="radio">
+        <label><input type="radio" name="optradio">No</label>
+      </div>
+  <% else %>
+      <%= f.text_area(question.id) %><br>
+  <% end %>
+  <br>
 <% end %>
 
 <div class="form-group">
