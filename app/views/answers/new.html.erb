@@ -6,6 +6,23 @@
   <%= f.text_area(question.id) %><br>
 <% end %>
 
+<div class = field>
+  <%= f.label("Choose a sector") %></br>
+  <%= f.select :questions, {"Alcoholism & Addiction" => 1, "Education" => 2, "Elderly Care" => 3, "Food" => 4, "Health & Medical" => 5, "Homelessness" => 6, "Jobs Programs" => 7, "Mental Health" => 8,
+  "Pregnancy & Parenting" => 9, "Violence & Abuse" => 10},{},:size=>11,:multiple=>true %>
+</div>
+<!-- Alcoholism & Addiction
+Education
+Elderly Care
+Food
+Health & Medical
+Homelessness
+Jobs Programs
+Mental Health
+Pregnancy & Parenting
+Violence & Abuse
+Other (open box) -->
+
 <div class="form-group">
   <%= f.submit "Submit", class: "btn btn-success" %>
 </div>

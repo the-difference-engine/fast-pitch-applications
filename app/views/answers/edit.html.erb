@@ -2,9 +2,14 @@
     <%= f.label(@answer.question.question_text) %>
     <%= f.text_area(:answer_text) %>
 
+  <div class = field>
+    <%= f.label("Choose a sector") %></br>
+    <%= f.select :questions, {"Alcoholism & Addiction" => 1, "Education" => 2, "Elderly Care" => 3, "Food" => 4, "Health & Medical" => 5, "Homelessness" => 6, "Jobs Programs" => 7, "Mental Health" => 8,
+    "Pregnancy & Parenting" => 9, "Violence & Abuse" => 10},{},:size=>11,:multiple=>true %>
+  </div>
 
-<div class="form-group">
-  <%= f.submit "Submit", class: "btn btn-success" %>
-</div>
+  <div class="form-group">
+    <%= f.submit "Submit", class: "btn btn-success" %>
+  </div>
 
 <% end %>

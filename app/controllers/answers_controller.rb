@@ -49,5 +49,4 @@ require 'pry'
       render 'edit'
     end
   end
-
 end
