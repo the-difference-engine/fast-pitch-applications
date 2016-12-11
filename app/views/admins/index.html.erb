@@ -8,7 +8,8 @@
         <a href="/admins/add_super_admin" class="btn btn-primary btn-lg">Add/Remove SuperAdmin</a></p>
 <% end %>
 
-
-
-
-<h4>The sortable list will be here.</h4>
+<h4>Current Applications (by applicant id):</h4>
+<h5>(This will be replaced with a table)</h5>
+<% @ids.each do |a| %>
+  <%= link_to "#{a.id}", "/admins/view/#{a.id}" %><br>
+<% end %>

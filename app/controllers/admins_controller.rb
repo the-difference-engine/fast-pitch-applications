@@ -4,13 +4,10 @@ class AdminsController < ApplicationController
 
     def index
       @super_admin = current_admin.super_admin
-      @applicants = []
-      @all_applicants = Applicant.all
-      @all_applicants.each do |a|
-        if a.answers.first.archived == false
-          @applicants << a
-        end
-      end
+      @ids = Applicant.all
+      @applicants = Applicant.joins(:answers)
+        .where(answers: {archived: false})
+        .group("applicant_id")
     end
 
     def view
