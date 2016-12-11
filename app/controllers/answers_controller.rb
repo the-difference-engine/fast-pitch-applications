@@ -9,9 +9,13 @@ require 'pry'
   end
 
   def show
+    @admin = current_admin
     @questions = Question.all
-    # binding.pry
-    @answers = Answer.where(applicant_id: current_applicant.id).order("id ASC")
+    if current_applicant
+      @answers = Answer.where(applicant_id: current_applicant.id).order("id ASC")
+    elsif current_admin
+      @answers = Answer.where(applicant_id: params[:applicant_id])
+    end
   end
 
   def create
@@ -42,11 +46,21 @@ require 'pry'
 
   def update
     @answer = Answer.find_by(id: params[:id])
-    # binding.pry
     if @answer.update(answer_text: params[:answer][:answer_text])
       redirect_to '/answers/edit'
     else
       render 'edit'
+    end
+  end
+
+  def archive
+    @answers = Answer.where(applicant_id: params[:applicant_id])
+    @answers.each do |a|
+      if a.update(archived: true)
+        redirect_to '/admins'
+      else
+        render '/answers/edit'
+      end
     end
   end
 

@@ -1,0 +1,11 @@
+<h1>View Application</h1>
+
+<% @answers.each do |answer| %>
+  <p><b><%= answer.question.question_text %> :</b> <br>
+  <%= answer.answer_text %></p>
+<% end %>
+
+
+<% if @super_admin %>
+  <%= link_to "Archive Application", "/admins/archive/#{@applicant}", :method => 'put' %><br>
+<% end %>
