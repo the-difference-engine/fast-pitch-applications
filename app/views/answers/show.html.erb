@@ -1,17 +1,7 @@
-<center><h2> Fast Pitch Form </h2></center>
-
-<%= form_for :answers, url: { action: :create } do |f| %>
-
- <%= hidden_field_tag("token", @token) %>
-<% @questions.each do |question| %>
-  <%= f.label(question.question_text) %>
-  <div>
-    <%= f.text_area(question.id) %>
-  </div>
-<% end %>
-
-<div class="form-group">
-  <%= f.submit "Submit", class: "btn btn-success" %>
-</div>
-
+<% @answers.each do |answer| %>
+  <p><b><%= answer.question.question_text %> :</b> <br>
+  <%= answer.answer_text %></p>
+  <% if current_applicant %>
+    <%= link_to "Edit Answer", edit_answer_path(answer) %>
+  <% end %>
 <% end %>

@@ -10,14 +10,14 @@ Rails.application.routes.draw do
   post 'ratings' => 'ratings#create'
   get 'ratings/:id' => 'ratings#show'
 
-  
-
   get '/admins' => 'admins#index'
-  get '/admins/my_ratings' => 'admins#my_ratings'
-  get '/admins/all_ratings' => 'admins#all_ratings'
   get '/admins/add_super_admin' => 'admins#add_super_admin'
   patch '/admins/:id/update' => 'admins#update'
+  get '/admins/view/:id' => 'admins#view'
+  put 'admins/archive/:id' => 'admins#archive'
 
+  get '/questions_new_closed' => 'questions#new_closed'
+  get '/questions_new_open' => 'questions#new_open'
 
   get '/register' => 'users#register'
   post '/user' => 'users#create'

@@ -1,4 +1,5 @@
-<center><h2> Fast Pitch Form </h2></center>
+<center><h2> Fast Pitch Application </h2></center>
+
 <%= form_for :answers, url: { action: :create } do |f| %>
 <% @questions.each do |question| %>
   <%= f.label(question.question_text) %>
