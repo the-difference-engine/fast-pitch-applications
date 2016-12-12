@@ -1,3 +1,4 @@
 class Sector < ApplicationRecord
-  belongs_to :answer  
+  has_many :applicant_sectors
+  has_many :applicants, through: :applicant_sectors
 end

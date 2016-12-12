@@ -2,11 +2,23 @@
     <%= f.label(@answer.question.question_text) %>
     <%= f.text_area(:answer_text) %>
 
-  <div class = field>
-    <%= f.label("Choose a sector") %></br>
-    <%= f.select :questions, {"Alcoholism & Addiction" => 1, "Education" => 2, "Elderly Care" => 3, "Food" => 4, "Health & Medical" => 5, "Homelessness" => 6, "Jobs Programs" => 7, "Mental Health" => 8,
-    "Pregnancy & Parenting" => 9, "Violence & Abuse" => 10},{},:size=>11,:multiple=>true %>
-  </div>
+    <div class=field></br>
+      <%= f.fields_for :applicant_sectors do |f| %>
+      <%= f.label :sectors, "Choose your sectors" %></br>
+      <%= f.select :sectors, options_for_select(Sector.all.map{|sector| [sector.name, sector.id]}, current_applicant.sector.map{|a| [a.name, a.id]}.flatten), {}, {:multiple => true, class: 'js-example-basic-multiple form-control'} %>
+      <% end %>
+    </div>
+
+    <script type="text/javascript">
+      $(".js-example-basic-single").select2({
+        data: current_applicant.sectors.map(&:name)
+      });
+    </script>
+
+    <script type="text/javascript">
+      $(".js-example-basic-multiple").select2({
+      });
+    </script>
 
   <div class="form-group">
     <%= f.submit "Submit", class: "btn btn-success" %>
