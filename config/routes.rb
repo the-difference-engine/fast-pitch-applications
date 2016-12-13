@@ -16,7 +16,8 @@ Rails.application.routes.draw do
   get '/admins/add_super_admin' => 'admins#add_super_admin'
   patch '/admins/:id/update' => 'admins#update'
 
-  post '/sectors' => 'answers#sector'
+  get '/sectors' => 'answers#sectors'
+  post '/sector_create' => "answers#sector_create"
 
   get '/register' => 'users#register'
   post '/user' => 'users#create'

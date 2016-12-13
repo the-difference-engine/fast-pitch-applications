@@ -1,5 +1,4 @@
 class AnswersController < ApplicationController
-require 'pry'
   def index
     @applicant = current_applicant
   end
@@ -15,7 +14,6 @@ require 'pry'
   end
 
   def create
-    saved_answer = []
     @questions = Question.all
     params[:answers].each do |question_id, answer_text|
       @answer = Answer.new(
@@ -36,15 +34,22 @@ require 'pry'
   end
 
   def sectors
-    params[:applicant_sectors].each do |applicant_id, sector_id|
-      @applicant_sector = ApplicantSector.create(
-      applicant_id: current_applicant.id,
-      sector_id: params[:sector_id]
-      )
-    end 
+    @applicant_sectors = ApplicantSector.find_by(applicant_id: current_applicant.id)
   end
 
-
+  def sector_create
+    i = 0
+    arr = params[:applicant_sectors][:sectors]
+    arr.delete("")
+    arr.length.times do |i|
+    @applicant_sector = ApplicantSector.create(
+    applicant_id: current_applicant.id,
+    sector_id: params[:applicant_sectors][:sectors][i]
+    )
+    i += 1
+    end
+    redirect_to "/"
+  end
 
   def edit
     @answer = Answer.find_by(id: params[:id])
