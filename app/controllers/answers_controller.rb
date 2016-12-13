@@ -17,7 +17,6 @@ require 'pry'
   def create
     saved_answer = []
     @questions = Question.all
-
     params[:answers].each do |question_id, answer_text|
       @answer = Answer.new(
         applicant_id: current_applicant.id,
@@ -35,6 +34,17 @@ require 'pry'
 
     redirect_to "/"
   end
+
+  def sectors
+    params[:applicant_sectors].each do |applicant_id, sector_id|
+      @applicant_sector = ApplicantSector.create(
+      applicant_id: current_applicant.id,
+      sector_id: params[:sector_id]
+      )
+    end 
+  end
+
+
 
   def edit
     @answer = Answer.find_by(id: params[:id])

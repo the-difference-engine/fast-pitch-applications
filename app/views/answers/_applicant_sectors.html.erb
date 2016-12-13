@@ -1,0 +1,20 @@
+
+<div class=field></br>
+  <%= fields_for :applicant_sectors do |f| %>
+  <%= f.label :sectors, "Choose your sectors" %></br>
+  <%= f.select :sectors, options_for_select(Sector.all.map{|sector| [sector.name, sector.id]}, current_applicant.sector.map{|a| [a.name, a.id]}.flatten), {}, {:multiple => true, class: 'js-example-basic-multiple form-control'} %>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  $(".js-example-basic-single").select2({
+    data: current_applicant.sectors.map(&:name)
+  });
+</script>
+
+<script type="text/javascript">
+  $(".js-example-basic-multiple").select2({
+  });
+</script>
+
+<button class="btn btn-success"><%= link_to "Add Sectors", sectors_path, :method => "post" %></button>

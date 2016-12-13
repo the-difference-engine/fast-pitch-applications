@@ -1,35 +1,12 @@
 <center><h2> Fast Pitch Application </h2></center>
 
+<%= render 'applicant_sectors' %>
+
 <%= form_for :answers, url: { action: :create } do |f| %>
 <% @questions.each do |question| %>
   <%= f.label(question.question_text) %>
   <%= f.text_area(question.id) %><br>
 <% end %>
-
-
-<!-- <div class=field></br>
-  <%= f.label("Choose your sectors") %></br>
-  <%= f.collection_select :sector_id, Sector.all, :id, :name %>
-</div> -->
-
-<div class=field></br>
-  <%= f.fields_for :applicant_sectors do |f| %>
-  <%= f.label :sectors, "Choose your sectors" %></br>
-  <%= f.select :sectors, options_for_select(Sector.all.map{|sector| [sector.name, sector.id]}, current_applicant.sector.map{|a| [a.name, a.id]}.flatten), {}, {:multiple => true, class: 'js-example-basic-multiple form-control'} %>
-  <% end %>
-</div>
-
-<script type="text/javascript">
-  $(".js-example-basic-single").select2({
-    data: current_applicant.sectors.map(&:name)
-  });
-</script>
-
-<script type="text/javascript">
-  $(".js-example-basic-multiple").select2({
-  });
-</script>
-
 
 <div class="form-group"></br>
   <%= f.submit "Submit", class: "btn btn-success" %>
