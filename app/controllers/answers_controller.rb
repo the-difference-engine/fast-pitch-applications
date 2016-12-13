@@ -24,14 +24,14 @@ require 'pry'
         question_id: question_id,
         answer_text: answer_text
       )
-
+      end
       if @answer.save
         saved_answer << @answer
+        @unanswered = Answer.where(answer_text: "")
+        flash[:warning] = '@unanswered questions are still blank - remember to finish!'
       else
         render("/answers/new")
-         return
       end
-    end
 
     redirect_to "/"
     flash[:success] = "Application Saved"
