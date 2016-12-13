@@ -18,15 +18,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-
-      <% if current_admin %>
-        <a class="navbar-brand" href="/admins">FastPitch</a>
-      <% elsif current_applicant %>
-        <a class="navbar-brand" href="/answers">FastPitch</a>
-      <% else %>
       <a class="navbar-brand" href="/">FastPitch</a>
-      <% end %>
-
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
@@ -51,34 +43,23 @@
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form> -->
-
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Applicants <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Signup/Signin <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <% if !current_applicant %>
-              <li><a href="/applicants/sign_in">Applicant Log In</a></li>
-              <li><a href="/applicants/sign_up">Applicant Sign Up</a></li>
-            <% end %>
-            <% if current_applicant %>
-              <li><%= link_to "Application Home", answers_path %></li>
-              <li><%= link_to "Applicant Log out", destroy_applicant_session_path, method: :delete %>
-            <% end %>
-          </ul>
-        </li>
-      </ul>
-
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admins <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <% if !current_admin %>
-              <li><a href="/admins/sign_in">Admin Log In</a></li>
-              <li><a href="/admins/sign_up">Admin Sign Up</a></li>
-            <% end %>
+            <li><a href="/admins/sign_in">Admin Log In</a></li>
+            <li><a href="/admins/sign_up">Admin Sign Up</a></li>
+            <li><a href="/applicants/sign_in">Applicant Log In</a></li>
+            <li><a href="/applicants/sign_up">Applicant Sign Up</a></li>
             <% if current_admin %>
-            <li><a href="/admins">Admin Panel</a></li>
             <li><%= link_to "Log out", destroy_admin_session_path, method: :delete %>
+            <% end %>
+            <!-- <% if !current_applicant %>
+            <li><a href="/applicants/sign_in">Applicant Log In</a></li>
+            <li><a href="/applicants/sign_up">Applicant Sign Up</a></li>
+            <% end %> -->
+            <% if current_applicant %>
+            <li><%= link_to "Applicant Log out", destroy_applicant_session_path, method: :delete %>
             <% end %>
           </ul>
         </li>

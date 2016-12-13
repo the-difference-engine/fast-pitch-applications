@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     if resource_name == :admin
        '/admins'
     elsif resource_name == :applicant
-       '/answers'
+       '/answers/new'
     end
   end
 

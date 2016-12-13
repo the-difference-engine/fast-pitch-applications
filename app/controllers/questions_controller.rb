@@ -41,20 +41,6 @@ class QuestionsController < ApplicationController
     redirect_to questions_path
   end
 
-  def new_open
-      @question = Question.create(
-        question_text: params[:question_text],
-        closed_question: false
-      )
-  end
-
-  def new_closed
-    @question = Question.create(
-      question_text: params[:question_text],
-      closed_question: true
-    )
-  end
-
   private
 
   def question_params

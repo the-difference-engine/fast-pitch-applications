@@ -4,7 +4,7 @@
 <% @admins.each do |admin| %>
   <p> <%= admin.email %>
     <% if !admin.super_admin %>
-      <%= link_to "Make SuperAdmin", "/admins/#{admin.id}/update", method: :patch%>
+      <%= link_to "Add SuperAdmin", "/admins/#{admin.id}/update", method: :patch%>
     <% else %>
       <%= link_to "Remove SuperAdmin", "/admins/#{admin.id}/update", method: :patch%>
     <% end %>
