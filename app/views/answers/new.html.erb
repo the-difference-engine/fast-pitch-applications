@@ -4,12 +4,7 @@
 <% @questions.each do |question| %>
     <%= f.label(question.question_text) %> <br>
   <% if question.closed_question == true  %>
-      <div class="radio">
-        <label><input type="radio" name="optradio">Yes</label>
-      </div>
-      <div class="radio">
-        <label><input type="radio" name="optradio">No</label>
-      </div>
+    <%= check_box("answers[#{question.id}]",:answer_text, {}, "yes", "no") %>
   <% else %>
       <%= f.text_area(question.id) %><br>
   <% end %>
