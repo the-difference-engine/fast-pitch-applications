@@ -4,15 +4,18 @@ class AdminsController < ApplicationController
 
     def index
       @super_admin = current_admin.super_admin
-      @ids = Applicant.all
-      @applicants = Applicant.joins(:answers)
-        .where(answers: {archived: false})
-        .group("applicant_id")
+      @applicants = Applicant.all
+      @questions = Question.all
+      @answers = Answer.all
+      # @applicant_links = Applicant.joins(:answers)
+      #   .where(answers: {archived: false})
+      #   .group("applicant_id")
     end
 
     def view
-      @answers = Answer.where(applicant_id: params[:id], archived: false)
+      @answers = Answer.where(applicant_id: params[:id]).order("id ASC")
       @applicant = @answers.first.applicant_id
+      @archived = @answers.first.archived
       @super_admin = current_admin.super_admin
     end
 
@@ -42,7 +45,7 @@ class AdminsController < ApplicationController
     )
     @admins = Admin.all
     redirect_to admins_add_super_admin_path
-    flash[:success] = "Success!"
+    flash[:success] = "Status Updated Successfully!"
   end
 
 end

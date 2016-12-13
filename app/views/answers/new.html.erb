@@ -2,7 +2,7 @@
 
 <%= form_for :answers, url: { action: :create } do |f| %>
 <% @questions.each do |question| %>
-    <%= f.label(question.question_text) %>
+    <%= f.label(question.question_text) %> <br>
   <% if question.closed_question == true  %>
       <div class="radio">
         <label><input type="radio" name="optradio">Yes</label>

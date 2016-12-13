@@ -34,6 +34,7 @@ require 'pry'
     end
 
     redirect_to "/"
+    flash[:success] = "Application Saved"
   end
 
   def edit
@@ -45,6 +46,7 @@ require 'pry'
     # binding.pry
     if @answer.update(answer_text: params[:answer][:answer_text])
       redirect_to '/answers/edit'
+      flash[:success] = "Answer Updated"
     else
       render 'edit'
     end

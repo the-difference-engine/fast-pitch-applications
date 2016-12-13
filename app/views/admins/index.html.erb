@@ -1,15 +1,11 @@
 <h2> Admin Panel </h2>
 
-<p><a href="/admins/my_ratings" class="btn btn-primary btn-lg">My Ratings</a>
-
 <% if @super_admin %>
         <a href="/questions" class="btn btn-primary btn-lg">Edit Application</a>
-        <a href="/admins/all_ratings" class="btn btn-primary btn-lg">View All Ratings</a>
         <a href="/admins/add_super_admin" class="btn btn-primary btn-lg">Add/Remove SuperAdmin</a></p>
 <% end %>
 
 <h4>Current Applications (by applicant id):</h4>
 <h5>(This will be replaced with a table)</h5>
-<% @ids.each do |a| %>
-  <%= link_to "#{a.id}", "/admins/view/#{a.id}" %><br>
-<% end %>
+
+<%= render 'table' %>
