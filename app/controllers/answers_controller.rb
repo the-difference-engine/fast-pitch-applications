@@ -1,4 +1,6 @@
 class AnswersController < ApplicationController
+  skip_before_filter  :verify_authenticity_token
+  
   def index
     @applicant = current_applicant
   end
@@ -9,11 +11,11 @@ class AnswersController < ApplicationController
 
   def show
     @questions = Question.all
-    # binding.pry
     @answers = Answer.where(applicant_id: current_applicant.id).order("id ASC")
   end
 
   def create
+    saved_answer = []
     @questions = Question.all
     params[:answers].each do |question_id, answer_text|
       @answer = Answer.new(
@@ -39,12 +41,12 @@ class AnswersController < ApplicationController
 
   def sector_create
     i = 0
-    arr = params[:applicant_sectors][:sectors]
+    arr = params[:applicant_sectors][:sector_id]
     arr.delete("")
     arr.length.times do |i|
-    @applicant_sector = ApplicantSector.create(
+    applicant_sector = ApplicantSector.create(
     applicant_id: current_applicant.id,
-    sector_id: params[:applicant_sectors][:sectors][i]
+    sector_id: params[:applicant_sectors][:sector_id][i]
     )
     i += 1
     end

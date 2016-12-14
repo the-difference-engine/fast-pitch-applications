@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   get '/sectors' => 'answers#sectors'
   post '/sector_create' => "answers#sector_create"
+  get '/sectors/:id/edit' => "answers#edit"
+  patch 'sectors/:id/update' => 'answers#update'
 
   get '/register' => 'users#register'
   post '/user' => 'users#create'

@@ -2,8 +2,8 @@
   <%= form_tag("/sector_create", method: "create") do %>
     <div class=field></br>
       <%= fields_for :applicant_sectors do |f| %>
-      <%= f.label :sectors, "Choose your sectors" %></br>
-      <%= f.select :sectors, options_for_select(Sector.all.map{|sectors| [sectors.name, sectors.id]}, current_applicant.sectors.map{|a| [a.name, a.id]}.flatten), {}, {:multiple => true, class: 'js-example-basic-multiple form-control'} %>
+      <%= f.label :sector_id, "Choose your sectors" %></br>
+      <%= f.select :sector_id, options_for_select(Sector.all.map{|sectors| [sectors.name, sectors.id]}, current_applicant.sectors.map{|a| [a.name, a.id]}.flatten), {}, {:multiple => true, class: 'js-example-basic-multiple form-control'} %>
       <% end %>
     </div>
 
