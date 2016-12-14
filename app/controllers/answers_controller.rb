@@ -1,5 +1,6 @@
 class AnswersController < ApplicationController
-require 'pry'
+  skip_before_filter  :verify_authenticity_token
+  
   def index
     @applicant = current_applicant
   end
@@ -10,14 +11,12 @@ require 'pry'
 
   def show
     @questions = Question.all
-    # binding.pry
     @answers = Answer.where(applicant_id: current_applicant.id).order("id ASC")
   end
 
   def create
     saved_answer = []
     @questions = Question.all
-
     params[:answers].each do |question_id, answer_text|
       @answer = Answer.new(
         applicant_id: current_applicant.id,
@@ -37,6 +36,24 @@ require 'pry'
     flash[:success] = "Application Saved"
   end
 
+  def sectors
+    @applicant_sectors = ApplicantSector.find_by(applicant_id: current_applicant.id)
+  end
+
+  def sector_create
+    i = 0
+    arr = params[:applicant_sectors][:sector_id]
+    arr.delete("")
+    arr.length.times do |i|
+    applicant_sector = ApplicantSector.create(
+    applicant_id: current_applicant.id,
+    sector_id: params[:applicant_sectors][:sector_id][i]
+    )
+    i += 1
+    end
+    redirect_to "/"
+  end
+
   def edit
     @answer = Answer.find_by(id: params[:id])
   end
@@ -51,5 +68,4 @@ require 'pry'
       render 'edit'
     end
   end
-
 end

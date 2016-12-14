@@ -1,6 +1,7 @@
 class Question < ApplicationRecord
   has_many :answers
   has_many :applicants, through: :answers
+  belongs_to :sector
 
   # This is where we write the word count checker method
   # validate for under word count
@@ -11,5 +12,4 @@ class Question < ApplicationRecord
 
   # Same thing with required questions: an is_required validation will check if
   # the user has skipped a required question
-
 end
