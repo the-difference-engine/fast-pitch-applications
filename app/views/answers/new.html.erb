@@ -2,8 +2,13 @@
 
 <%= form_for :answers, url: { action: :create } do |f| %>
 <% @questions.each do |question| %>
-  <%= f.label(question.question_text) %>
-  <%= f.text_area(question.id) %><br>
+    <%= f.label(question.question_text) %> <br>
+  <% if question.closed_question == true  %>
+    <%= check_box("answers[#{question.id}]",:answer_text, {}, "yes", "no") %>
+  <% else %>
+      <%= f.text_area(question.id) %><br>
+  <% end %>
+  <br>
 <% end %>
 
 <div class="form-group"></br>

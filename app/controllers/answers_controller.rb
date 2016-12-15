@@ -33,6 +33,7 @@ class AnswersController < ApplicationController
     end
 
     redirect_to "/"
+    flash[:success] = "Application Saved"
   end
 
   def sectors
@@ -62,6 +63,7 @@ class AnswersController < ApplicationController
     # binding.pry
     if @answer.update(answer_text: params[:answer][:answer_text])
       redirect_to '/answers/edit'
+      flash[:success] = "Answer Updated"
     else
       render 'edit'
     end
