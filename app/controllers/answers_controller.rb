@@ -1,12 +1,29 @@
 class AnswersController < ApplicationController
   skip_before_filter  :verify_authenticity_token
-  
+
   def index
     @applicant = current_applicant
   end
 
   def new
     @questions = Question.all
+    @info = []
+    @questions.each do |question|
+      if question.id < 475
+        @info << question
+      end
+    end
+  end
+
+  def continued
+    @questions = Question.all
+    @in_depth = []
+    @questions.each do |question|
+      if question.id > 475
+        @in_depth << question
+      end
+    end
+    render 'answers/continued'
   end
 
   def show
@@ -32,8 +49,8 @@ class AnswersController < ApplicationController
       end
     end
 
-    redirect_to "/"
-    flash[:success] = "Application Saved"
+    redirect_to "/answers"
+    flash[:success] = "Progress Saved"
   end
 
   def sectors
@@ -51,16 +68,16 @@ class AnswersController < ApplicationController
     )
     i += 1
     end
-    redirect_to "/"
+    redirect_to "/answers"
+    flash[:success] = "Progress Saved"
   end
 
   def edit
-    @answer = Answer.find_by(id: params[:id])
+    @answer = Answer.find_by(applicant_id: current_applicant.id)
   end
 
   def update
     @answer = Answer.find_by(id: params[:id])
-    # binding.pry
     if @answer.update(answer_text: params[:answer][:answer_text])
       redirect_to '/answers/edit'
       flash[:success] = "Answer Updated"

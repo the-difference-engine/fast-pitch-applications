@@ -167,9 +167,9 @@
 
 Sector.destroy_all
 
-alcoholism_Addiction = Sector.create(name: "Alcoholism_Addiction")
+alcoholism_addiction = Sector.create(name: "Alcoholism, Addiction")
 education = Sector.create(name: "Education")
-elderly_care = Sector.creat(name: "Elderly Care")
+elderly_care = Sector.create(name: "Elderly Care")
 food = Sector.create(name: "Food")
 health_medical = Sector.create(name: "Health Medical")
 homelessness = Sector.create(name: "Homelessness")

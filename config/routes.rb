@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   devise_for :applicants
+
+  get '/answers/continued' => 'answers#continued'
   resources :answers
   resources :questions
   devise_for :admins
