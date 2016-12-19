@@ -1,0 +1,26 @@
+
+  <%= form_tag("/sector_create", method: "create") do %>
+    <div class=field></br>
+      <%= fields_for :applicant_sectors do |f| %>
+      <%= f.label :sector_id, "Sector(s) your program addresses:" %></br>
+      <%= f.select :sector_id, options_for_select(Sector.all.map{|sectors| [sectors.name, sectors.id]}, current_applicant.sectors.map{|a| [a.name, a.id]}.flatten), {}, {:multiple => true, class: 'js-example-basic-multiple form-control'} %>
+      <% end %>
+    </div>
+
+    <script type="text/javascript">
+      $(".js-example-basic-single").select2({
+        data: current_applicant.sectors.map(&:name)
+      });
+    </script>
+
+    <script type="text/javascript">
+      $(".js-example-basic-multiple").select2({
+      });
+    </script>
+
+  <div class="form-group"></br>
+    <%= submit_tag "Save", class: "btn btn-success btn-lg" %>
+    <a href="/answers/continued" class="btn btn-primary btn-lg">Continue Application</a>
+
+  </div>
+  <% end %>

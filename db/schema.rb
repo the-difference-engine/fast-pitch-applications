@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161209012557) do
+ActiveRecord::Schema.define(version: 20161211202646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(version: 20161209012557) do
     t.integer  "applicant_id"
     t.integer  "question_id"
     t.text     "answer_text"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "archived",     default: false
+  end
+
+  create_table "applicant_sectors", force: :cascade do |t|
+    t.integer  "applicant_id"
+    t.integer  "sector_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
@@ -85,6 +93,12 @@ ActiveRecord::Schema.define(version: 20161209012557) do
     t.datetime "updated_at",                null: false
     t.integer  "user_id"
     t.integer  "admin_id"
+  end
+
+  create_table "sectors", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
