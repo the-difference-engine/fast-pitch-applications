@@ -73,16 +73,23 @@ class AnswersController < ApplicationController
   end
 
   def edit
-    @answer = Answer.find_by(applicant_id: current_applicant.id)
+    @questions = Question.all
+    @answers = Answer.where(applicant_id: current_applicant.id)
   end
 
   def update
-    @answer = Answer.find_by(id: params[:id])
-    if @answer.update(answer_text: params[:answer][:answer_text])
-      redirect_to '/answers/edit'
-      flash[:success] = "Answer Updated"
-    else
-      render 'edit'
+    params[:answers].each do |answer_id, answer_text|
+      @answer = Answer.find_by(id: answer_id)
+      @answer.update(answer_text: answer_text)
     end
+    @saved_answers = Answer.where(applicant_id: current_applicant.id)
+    error_count = 0
+    @saved_answers.each do |sa|
+      if sa.answer_text == ""
+        error_count += 1
+      end
+    end
+    redirect_to "/answers"
+    flash[:warning] = "#{error_count} questions are not answered"
   end
 end
