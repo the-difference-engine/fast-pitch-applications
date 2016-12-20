@@ -18,15 +18,14 @@ Rails.application.routes.draw do
   get '/admins/view/:id' => 'admins#view'
   put 'admins/archive/:id' => 'admins#archive'
 
-
   get '/sectors' => 'answers#sectors'
-  post '/sector_create' => "answers#sector_create"
-  get '/sectors/:id/edit' => "answers#edit"
+  post '/sector_create' => 'answers#sector_create'
+  get '/sectors/:id/edit' => 'answers#edit'
   patch 'sectors/:id/update' => 'answers#update'
+  get 'form_closed' => 'answers#form_closed'
 
   get '/questions_new_closed' => 'questions#new_closed'
   get '/questions_new_open' => 'questions#new_open'
-
 
   get '/register' => 'users#register'
   post '/user' => 'users#create'

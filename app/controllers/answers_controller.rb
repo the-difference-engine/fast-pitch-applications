@@ -3,6 +3,15 @@ class AnswersController < ApplicationController
 
   def index
     @applicant = current_applicant
+    @current_date  = Time.zone.now
+    # @deadline_date = Time.zone.local(2017, 1, 27, 12, 00)
+    @deadline_date = Time.zone.local(2017, 1, 27, 12, 00)
+
+    # date = Time.parse("27-01-2017, 12:00")
+    if @current_date.to_i > @deadline_date.to_i
+      redirect_to ''
+      flash[:notice] = 'Deadline for Applications has been reached.'
+    end
   end
 
   def new
@@ -53,6 +62,20 @@ class AnswersController < ApplicationController
     flash[:success] = "Progress Saved"
   end
 
+  def edit
+    @answer = Answer.find_by(applicant_id: current_applicant.id)
+  end
+
+  def update
+    @answer = Answer.find_by(id: params[:id])
+    if @answer.update(answer_text: params[:answer][:answer_text])
+      redirect_to '/answers/edit'
+      flash[:success] = "Answer Updated"
+    else
+      render 'edit'
+    end
+  end
+
   def sectors
     @applicant_sectors = ApplicantSector.find_by(applicant_id: current_applicant.id)
   end
@@ -70,19 +93,5 @@ class AnswersController < ApplicationController
     end
     redirect_to "/answers"
     flash[:success] = "Progress Saved"
-  end
-
-  def edit
-    @answer = Answer.find_by(applicant_id: current_applicant.id)
-  end
-
-  def update
-    @answer = Answer.find_by(id: params[:id])
-    if @answer.update(answer_text: params[:answer][:answer_text])
-      redirect_to '/answers/edit'
-      flash[:success] = "Answer Updated"
-    else
-      render 'edit'
-    end
   end
 end

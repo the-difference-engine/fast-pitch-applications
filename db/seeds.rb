@@ -49,8 +49,8 @@
 #     phone_number: "(718)542-4213",
 #     tax_exempt: true
 #   )
-# # <<<<<<< HEAD
-# # =======
+# #
+# #
 #
 #   User.create(
 #     name: "Greenpoint",
@@ -67,7 +67,7 @@
 #     phone_number: "(347) 123-4567",
 #     tax_exempt: true
 #   )
-# # >>>>>>> f9f1856409bf8147a38ee0b86372214513647374
+# 
 # end
 #
 # def seed_admin
