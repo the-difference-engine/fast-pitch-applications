@@ -38,9 +38,8 @@ ActiveRecord::Schema.define(version: 20161211202646) do
     t.integer  "applicant_id"
     t.integer  "question_id"
     t.text     "answer_text"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.boolean  "archived",     default: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "applicant_sectors", force: :cascade do |t|
