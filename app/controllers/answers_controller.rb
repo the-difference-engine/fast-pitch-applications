@@ -94,4 +94,25 @@ class AnswersController < ApplicationController
     redirect_to "/answers"
     flash[:success] = "Progress Saved"
   end
+
+  def edit
+    @questions = Question.all
+    @answers = Answer.where(applicant_id: current_applicant.id)
+  end
+
+  def update
+    params[:answers].each do |answer_id, answer_text|
+      @answer = Answer.find_by(id: answer_id)
+      @answer.update(answer_text: answer_text)
+    end
+    @saved_answers = Answer.where(applicant_id: current_applicant.id)
+    error_count = 0
+    @saved_answers.each do |sa|
+      if sa.answer_text == ""
+        error_count += 1
+      end
+    end
+    redirect_to "/answers"
+    flash[:warning] = "#{error_count} questions are not answered"
+  end
 end
