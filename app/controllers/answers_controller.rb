@@ -3,37 +3,26 @@ class AnswersController < ApplicationController
 
   def index
     @applicant = current_applicant
+    @admin = current_admin
+    @questions = Question.all
+    if current_applicant
+      @answers = Answer.where(applicant_id: current_applicant.id).order("id ASC")
+    elsif current_admin
+      @answers = Answer.where(applicant_id: params[:applicant_id])
+    end
   end
 
   def new
     @questions = Question.all
-    @info = []
-    @questions.each do |question|
-      if question.id < 475
-        @info << question
-      end
-    end
-  end
-
-  def continued
-    @questions = Question.all
-    @in_depth = []
-    @questions.each do |question|
-      if question.id > 475
-        @in_depth << question
-      end
-    end
-    render 'answers/continued'
   end
 
   def show
-    @questions = Question.all
-    @answers = Answer.where(applicant_id: current_applicant.id).order("id ASC")
   end
 
   def create
     saved_answer = []
     @questions = Question.all
+
     params[:answers].each do |question_id, answer_text|
       @answer = Answer.new(
         applicant_id: current_applicant.id,
@@ -49,8 +38,7 @@ class AnswersController < ApplicationController
       end
     end
 
-    redirect_to "/answers"
-    flash[:success] = "Progress Saved"
+    redirect_to "/"
   end
 
   def sectors
@@ -73,23 +61,27 @@ class AnswersController < ApplicationController
   end
 
   def edit
-    @questions = Question.all
-    @answers = Answer.where(applicant_id: current_applicant.id)
+    @answer = Answer.find_by(id: params[:id])
   end
 
   def update
-    params[:answers].each do |answer_id, answer_text|
-      @answer = Answer.find_by(id: answer_id)
-      @answer.update(answer_text: answer_text)
+    @answer = Answer.find_by(id: params[:id])
+    if @answer.update(answer_text: params[:answer_text])
+      redirect_to '/answers'
+    else
+      render 'edit'
     end
-    @saved_answers = Answer.where(applicant_id: current_applicant.id)
-    error_count = 0
-    @saved_answers.each do |sa|
-      if sa.answer_text == ""
-        error_count += 1
-      end
-    end
-    redirect_to "/answers"
-    flash[:warning] = "#{error_count} questions are not answered"
   end
+
+  def archive
+   @answers = Answer.where(applicant_id: params[:applicant_id])
+   @answers.each do |a|
+     if a.update(archived: true)
+       redirect_to '/admins'
+     else
+       render '/answers/edit'
+     end
+   end
+ end
+
 end
