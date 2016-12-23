@@ -2,8 +2,6 @@ Rails.application.routes.draw do
   devise_for :applicants
 
   get '/answers/continued' => 'answers#continued'
-  get '/answers/edit' => 'answers#edit'
-  put '/answers/update' => 'answers#update'
   resources :answers
   resources :questions
   devise_for :admins
@@ -26,6 +24,13 @@ Rails.application.routes.draw do
   post '/sector_create' => "answers#sector_create"
   get '/sectors/:id/edit' => "answers#edit"
   patch 'sectors/:id/update' => 'answers#update'
+
+  get '/sectors' => 'answers#sectors'
+  post '/sector_create' => 'answers#sector_create'
+  get '/sectors/:id/edit' => 'answers#edit'
+  patch 'sectors/:id/update' => 'answers#update'
+  get 'form_closed' => 'answers#form_closed'
+
 
   get '/questions_new_closed' => 'questions#new_closed'
   get '/questions_new_open' => 'questions#new_open'

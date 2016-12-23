@@ -1,18 +1,11 @@
-<center><h2> Edit Application </h2></center>
+<center><h2> Edit Answer </h2></center>
 
-<%= form_for :answers, url: { action: :update }, method: :put do |f| %>
-  <% @answers.each do |answer| %>
-    <%= fields_for "answers[]", answer do |a| %>
-        <%- text = answer.question.question_text %>
-        <%= a.label(text) %> <br>
-        <%= a.text_area(:answer_text) %><br>
-    <% end %>
-    <br>
-  <% end %>
+<%= form_for :answers, url: { action: :update } do |f| %>
+    <%= f.label(@answer.question.question_text) %>
+    <%= f.text_area(@answer.answer_text) %>
 
-  <div class="form-group"></br>
-    <%= f.submit "Save Answers", class: "btn btn-success btn-lg" %>
-   <a href="/sectors" class="btn btn-primary btn-lg">Continue Application</a>
+  <div class="form-group">
+    <%= f.submit "Submit", class: "btn btn-success" %>
   </div>
 
 <% end %>
