@@ -6,8 +6,10 @@
   </tr>
     <% @applicants.each do |applicant| %>
       <tr>
-        <td><%= applicant.id %></td>
-        <td><%= applicant.answers.first.answer_text %></td>
+      
+        <% applicant.answers.each do |a| %>
+          <td><%= a.answer_text %></td>
+        <% end %>
       </tr>
     <% end %>
 </table>

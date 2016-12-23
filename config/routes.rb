@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get '/admins/view/:id' => 'admins#view'
   put 'admins/archive/:id' => 'admins#archive'
 
+  get '/search' => 'admins#search'
+
   get '/sectors' => 'answers#sectors'
   post '/sector_create' => 'answers#sector_create'
   get '/sectors/:id/edit' => 'answers#edit'
