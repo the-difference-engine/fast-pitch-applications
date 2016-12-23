@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   patch '/admins/:id/update' => 'admins#update'
   get '/admins/view/:id' => 'admins#view'
   put 'admins/archive/:id' => 'admins#archive'
+  get '/search' => 'admins#search'
 
 
   get '/search' => 'admins#search'
