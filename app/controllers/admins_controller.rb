@@ -10,6 +10,9 @@ class AdminsController < ApplicationController
       # @applicant_links = Applicant.joins(:answers)
       #   .where(answers: {archived: false})
       #   .group("applicant_id")
+
+      @applicant
+
     end
 
     def view

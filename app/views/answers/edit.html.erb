@@ -1,11 +1,13 @@
 <center><h2> Edit Answer </h2></center>
 
-<%= form_for :answers, url: { action: :update } do |f| %>
-    <%= f.label(@answer.question.question_text) %>
-    <%= f.text_area(@answer.answer_text) %>
 
-  <div class="form-group">
-    <%= f.submit "Submit", class: "btn btn-success" %>
-  </div>
-
+<%= form_tag "/answers/#{@answer.id}", method: :patch do %>
+  <%= text_field_tag(
+      :answer_text,
+      params[:answer_text],
+      placeholder: "#{@answer.answer_text}",
+      class: "form-control"
+  ) %>
+  <br>
+  <%= submit_tag("Update Answer", class: "btn btn-info btn-lg") %>
 <% end %>

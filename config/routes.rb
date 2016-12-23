@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   devise_for :applicants
-
-  get '/answers/continued' => 'answers#continued'
   resources :answers
   resources :questions
   devise_for :admins
@@ -20,10 +18,13 @@ Rails.application.routes.draw do
   get '/search' => 'admins#search'
 
 
+  get '/search' => 'admins#search'
+
   get '/sectors' => 'answers#sectors'
   post '/sector_create' => "answers#sector_create"
   get '/sectors/:id/edit' => "answers#edit"
   patch 'sectors/:id/update' => 'answers#update'
+
 
   get '/sectors' => 'answers#sectors'
   post '/sector_create' => 'answers#sector_create'
