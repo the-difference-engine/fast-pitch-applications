@@ -10,6 +10,9 @@ class AdminsController < ApplicationController
       # @applicant_links = Applicant.joins(:answers)
       #   .where(answers: {archived: false})
       #   .group("applicant_id")
+
+      @applicant
+
     end
 
     def view
@@ -48,4 +51,13 @@ class AdminsController < ApplicationController
     flash[:success] = "Status Updated Successfully!"
   end
 
+  def search
+    @answers = Answer.where("LOWER(name) LIKE ?", "%#{params[:search].downcase}%")
+    @super_admin = current_admin.super_admin
+    @applicants = Applicant.all
+    @questions = Question.all
+    @answers = Answer.all
+
+    render 'index.html.erb'
+  end
 end
