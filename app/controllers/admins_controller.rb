@@ -7,12 +7,6 @@ class AdminsController < ApplicationController
       @applicants = Applicant.all
       @questions = Question.all
       @answers = Answer.all
-      # @applicant_links = Applicant.joins(:answers)
-      #   .where(answers: {archived: false})
-      #   .group("applicant_id")
-
-      @applicant
-
     end
 
     def view
