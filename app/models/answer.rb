@@ -3,15 +3,12 @@ class Answer < ApplicationRecord
   belongs_to :question
 
   def self.to_csv
-    @questions = Question.all
-    q_t = []
-    @questions.each do |q|
-      q_t << q.question_text
-    end
+    applicants = Applicant.all
+    questions = Question.all
     CSV.generate do |csv|
-      csv << q_t
-      all.each do |item|
-        csv << item.attributes.values_at(*q_t)
+      csv << questions.map(&:question_text)
+      applicants.each do |applicant|
+        csv << applicant.answers.order(:question_id).map(&:answer_text)
       end
     end
   end
