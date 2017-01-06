@@ -1,15 +1,4 @@
-<table style="width:100%">
-  <tr>
-    <% @questions.each do |q| %>
-      <th><%= q.question_text %></th>
-          <% end %>
-  </tr>
-    <% @applicants.each do |applicant| %>
-      <tr>
-      
-        <% applicant.answers.each do |a| %>
-          <td><%= a.answer_text %></td>
-        <% end %>
-      </tr>
-    <% end %>
-</table>
+
+<% @applicants.each do |a| %>
+  <p><a href="/admins/view/<%= a.id %>"><%=  a.org_name %></a> </p>
+<% end %>

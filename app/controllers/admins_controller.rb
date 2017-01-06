@@ -5,8 +5,6 @@ class AdminsController < ApplicationController
     def index
       @super_admin = current_admin.super_admin
       @applicants = Applicant.all
-      @questions = Question.all
-      @answers = Answer.all
     end
 
     def view
@@ -46,12 +44,9 @@ class AdminsController < ApplicationController
   end
 
   def search
-    @answers = Answer.where("LOWER(name) LIKE ?", "%#{params[:search].downcase}%")
+    @answers = Answer.where("LOWER(answer_text) LIKE ?", "%#{params[:search].downcase}%")
     @super_admin = current_admin.super_admin
-    @applicants = Applicant.all
-    @questions = Question.all
-    @answers = Answer.all
-
+    @applicants = @answers.map(&:applicant)
     render 'index.html.erb'
   end
 end
