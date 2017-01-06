@@ -16,18 +16,46 @@ class AnswersController < ApplicationController
       redirect_to ''
       flash[:notice] = 'Deadline for Applications has been reached.'
     end
-
-    respond_to do |format|
-      format.html
-      format.csv { send_data @answers.to_csv, filename: "applications-#{Date.today}.csv" }
-    end
   end
 
   def new
     @questions = Question.all
+
+    @info = []
+    @questions.each do |question|
+      if question.id < 475
+        @info << question
+      end
+    end
+  end
+
+  def continued
+    @questions = Question.all
+    @in_depth = []
+    @questions.each do |question|
+      if question.id > 475
+        @in_depth << question
+      end
+    end
+    render 'answers/continued'
+
+    if current_applicant
+      @answers = Answer.where(applicant_id: current_applicant.id).order("id ASC")
+    elsif current_admin
+      @answers = Answer.where(applicant_id: params[:applicant_id])
+    end
+
+  end
+
+  def new
+    @questions = Question.all
+
+    @answers = Answer.where(applicant_id: current_applicant.id).order("id ASC")
+
   end
 
   def show
+
   end
 
   def create
@@ -47,6 +75,8 @@ class AnswersController < ApplicationController
       else
         render("/answers/new")
       end
+
+
     redirect_to "/answers"
     flash[:success] = "Progress Saved"
   end
@@ -60,15 +90,16 @@ class AnswersController < ApplicationController
     arr = params[:applicant_sectors][:sector_id]
     arr.delete("")
     arr.length.times do |i|
-      applicant_sector = ApplicantSector.create(
-        applicant_id: current_applicant.id,
-        sector_id: params[:applicant_sectors][:sector_id][i]
-      )
-      i += 1
+    applicant_sector = ApplicantSector.create(
+    applicant_id: current_applicant.id,
+    sector_id: params[:applicant_sectors][:sector_id][i]
+    )
+    i += 1
     end
     redirect_to "/answers"
     flash[:success] = "Progress Saved"
 
+    redirect_to "/"
   end
 
   def edit
@@ -85,6 +116,38 @@ class AnswersController < ApplicationController
     end
   end
 
+  def sectors
+    @applicant_sectors = ApplicantSector.find_by(applicant_id: current_applicant.id)
+  end
+
+  def sector_create
+    i = 0
+    arr = params[:applicant_sectors][:sector_id]
+    arr.delete("")
+    arr.length.times do |i|
+    applicant_sector = ApplicantSector.create(
+    applicant_id: current_applicant.id,
+    sector_id: params[:applicant_sectors][:sector_id][i]
+    )
+    i += 1
+    end
+    redirect_to "/answers"
+    flash[:success] = "Progress Saved"
+  end
+
+  def edit
+    @answer = Answer.find_by(id: params[:id])
+  end
+
+  def update
+    @answer = Answer.find_by(id: params[:id])
+    if @answer.update(answer_text: params[:answer_text])
+      redirect_to '/answers'
+    else
+      render 'edit'
+    end
+  end
+
   def archive
    @answers = Answer.where(applicant_id: params[:applicant_id])
    @answers.each do |a|
@@ -94,7 +157,6 @@ class AnswersController < ApplicationController
        render '/answers/edit'
      end
    end
-  end
-
+ end
 
 end
