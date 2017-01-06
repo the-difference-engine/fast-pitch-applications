@@ -7,8 +7,8 @@ class AnswersController < ApplicationController
     @questions = Question.all
    if current_applicant
      @answers = Answer.where(applicant_id: current_applicant.id).order("id ASC")
-   elsif current_admin
-     @answers = Answer.where(applicant_id: params[:applicant_id])
+  #  elsif current_admin
+  #    @answers = Answer.where(applicant_id: params[:applicant_id])
    end
     @current_date  = Time.zone.now
     @deadline_date = Time.zone.local(2017, 1, 27, 12, 00)
@@ -59,6 +59,25 @@ class AnswersController < ApplicationController
   end
 
   def create
+
+    binding.pry
+    # saved_answer = []
+    # @questions = Question.all
+    # params[:answers].each do |question_id, answer_text|
+    #   @answer = Answer.new(
+    #     applicant_id: current_applicant.id,
+    #     question_id: question_id,
+    #     answer_text: answer_text
+    #   )
+    #     if @answer.save
+    #       saved_answer << @answer
+    #       # @unanswered = Answer.where(answer_text: "")
+    #       # flash[:warning] = '@unanswered questions are still blank - remember to finish!'
+    #     else
+    #       render("/answers/new")
+    #     end
+    #   end
+
     saved_answer = []
     @questions = Question.all
     params[:answers].each do |question_id, answer_text|
@@ -75,6 +94,7 @@ class AnswersController < ApplicationController
       else
         render("/answers/new")
       end
+
 
 
     redirect_to "/answers"

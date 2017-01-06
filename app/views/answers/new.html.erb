@@ -4,7 +4,7 @@
 <% @info.each do |question| %>
     <%= f.label(question.question_text) %> <br>
   <% if question.closed_question == true  %>
-    <%= check_box("answers[#{question.id}]",:answer_text, {}, "yes", "no") %>
+    <%= f.check_box("answers[#{question.id}]") %>
   <% else %>
       <%= f.text_area(question.id) %><br>
   <% end %>
