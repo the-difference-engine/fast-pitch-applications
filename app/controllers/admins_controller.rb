@@ -7,12 +7,12 @@ class AdminsController < ApplicationController
       @applicants = Applicant.all
       @questions = Question.all
       @answers = Answer.all
-      # @applicant_links = Applicant.joins(:answers)
-      #   .where(answers: {archived: false})
-      #   .group("applicant_id")
-
-      @applicant
-
+      @org_names = []
+      @answers.each do |a|
+        if a.question_id == 457
+          @org_names << a
+        end
+      end
     end
 
     def view
