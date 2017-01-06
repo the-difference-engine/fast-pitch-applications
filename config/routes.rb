@@ -6,6 +6,10 @@ Rails.application.routes.draw do
 
   get '/' => 'welcome#index'
 
+  get 'ratings/new' => 'ratings#new'
+  post 'ratings' => 'ratings#create'
+  get 'ratings/:id' => 'ratings#show'
+
   get '/admins' => 'admins#index'
   get '/admins/add_super_admin' => 'admins#add_super_admin'
   patch '/admins/:id/update' => 'admins#update'
