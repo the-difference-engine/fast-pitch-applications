@@ -1,4 +1,4 @@
-<center><h2> Edit Answer </h2></center>
+<center><h2> Edit Answer </h2></center><br>
 
 
 <%= form_tag "/answers/#{@answer.id}", method: :patch do %>
@@ -8,6 +8,6 @@
       placeholder: "#{@answer.answer_text}",
       class: "form-control"
   ) %>
-  <br>
+  <br></br>
   <%= submit_tag("Update Answer", class: "btn btn-info btn-lg") %>
 <% end %>
