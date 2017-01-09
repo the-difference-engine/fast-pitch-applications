@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(version: 20170106014056) do
     t.text     "answer_text",  default: "Enter"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.boolean  "archived",     default: false
   end
 
   create_table "applicant_sectors", force: :cascade do |t|
