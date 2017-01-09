@@ -2,9 +2,15 @@ class Answer < ApplicationRecord
   belongs_to :applicant
   belongs_to :question
 
-  
-
-  # validate by calling question validations on the answers
-  # check whether the answer is required and whether it exceeds the word count
-
+  def self.to_csv
+    applicants = Applicant.all
+    questions = Question.all
+    
+    CSV.generate do |csv|
+      csv << questions.map(&:question_text)
+      applicants.each do |applicant|
+        csv << applicant.answers.order(:question_id).map(&:answer_text)
+      end
+    end
+  end
 end

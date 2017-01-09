@@ -7,8 +7,8 @@ class AnswersController < ApplicationController
     @questions = Question.all
    if current_applicant
      @answers = Answer.where(applicant_id: current_applicant.id).order("id ASC")
-  #  elsif current_admin
-  #    @answers = Answer.where(applicant_id: params[:applicant_id])
+   elsif current_admin
+     @answers = Answer.all
    end
     @current_date  = Time.zone.now
     @deadline_date = Time.zone.local(2017, 1, 27, 12, 00)
@@ -16,6 +16,12 @@ class AnswersController < ApplicationController
       redirect_to ''
       flash[:notice] = 'Deadline for Applications has been reached.'
     end
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @answers.to_csv, filename: "applications-#{Date.today}.csv" }
+    end
+
   end
 
   def new
