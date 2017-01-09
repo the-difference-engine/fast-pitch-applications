@@ -1,10 +1,15 @@
 <center><h2> Fast Pitch Application </h2></center>
 
+
 </br></br><%= form_for :answers, url: { action: :create } do |f| %>
 <% @questions.each do |question| %>
+
+<%= form_for :answers, url: { action: :create } do |f| %>
+<% @info.each do |question| %>
+
     <%= f.label(question.question_text) %> <br>
   <% if question.closed_question == true  %>
-    <%= check_box("answers[#{question.id}]",:answer_text, {}, "yes", "no") %>
+    <%= f.check_box("answers[#{question.id}]") %>
   <% else %>
       <%= f.text_area(question.id) %><br>
   <% end %>
@@ -13,7 +18,7 @@
 
 <div class="form-group"></br>
   <%= f.submit "Save Answers", class: "btn btn-success btn-lg" %>
- <a href="/sectors" class="btn btn-primary btn-lg">Continue to Sectors</a>
+ <a href="/sectors" class="btn btn-primary btn-lg">Continue Application</a>
 </div>
 
 <% end %>
