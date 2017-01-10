@@ -26,31 +26,6 @@ class AnswersController < ApplicationController
 
   def new
     @questions = Question.all
-
-    @info = []
-    @questions.each do |question|
-      if question.id < 475
-        @info << question
-      end
-    end
-  end
-
-  def continued
-    @questions = Question.all
-    @in_depth = []
-    @questions.each do |question|
-      if question.id > 475
-        @in_depth << question
-      end
-    end
-    render 'answers/continued'
-
-    if current_applicant
-      @answers = Answer.where(applicant_id: current_applicant.id).order("id ASC")
-    elsif current_admin
-      @answers = Answer.where(applicant_id: params[:applicant_id])
-    end
-
   end
 
   def new
