@@ -6,7 +6,9 @@
 
     <%= f.label(question.question_text) %> <br>
     <% if question.closed_question == true  %>
-      <%= f.check_box("answers[#{question.id}]") %>
+      <%= f.radio_button(:answer_text, "Yes") %>
+      <%= f.radio_button(:answer_text, "No") %>
+
     <% else %>
         <%= f.text_area(question.id) %><br>
     <% end %>
