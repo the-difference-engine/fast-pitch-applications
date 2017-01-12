@@ -1,12 +1,16 @@
-<h1>Add/Remove SuperAdmin</h1>
-<h4>All Admins</h4>
-
-<% @admins.each do |admin| %>
+<center><h1>Add/Remove SuperAdmin</h1></center>
+<center><br><h3><% @admins.each do |admin| %></h3></br></center>
+<div class="row">
+<div class="col-md-4 well">
+  <ul class="list-unstyled">
   <p> <%= admin.email %>
     <% if !admin.super_admin %>
-      <%= link_to "Make SuperAdmin", "/admins/#{admin.id}/update", method: :patch%>
+      <br><br><%= link_to "Make SuperAdmin", "/admins/#{admin.id}/update", class: "btn btn-primary", method: :patch%></br>
     <% else %>
-      <%= link_to "Remove SuperAdmin", "/admins/#{admin.id}/update", method: :patch%>
+      <br><br><%= link_to "Remove SuperAdmin", "/admins/#{admin.id}/update", class: "btn btn-primary", method: :patch%></br>
     <% end %>
   </p>
+</div>
+</div>
+</ul>
 <% end %>
