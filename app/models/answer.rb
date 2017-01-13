@@ -5,7 +5,8 @@ class Answer < ApplicationRecord
   def self.to_csv
     applicants = Applicant.all
     questions = Question.all
-    
+    sectors = Sector.all
+
     CSV.generate do |csv|
       csv << questions.map(&:question_text)
       applicants.each do |applicant|
