@@ -1,5 +1,6 @@
 class AnswersController < ApplicationController
   skip_before_filter  :verify_authenticity_token
+  require 'pry'
 
   def index
     @applicant = current_applicant
@@ -30,7 +31,6 @@ class AnswersController < ApplicationController
 
   def new
     @questions = Question.all
-
     @answers = Answer.where(applicant_id: current_applicant.id).order("id ASC")
 
   end
@@ -40,44 +40,21 @@ class AnswersController < ApplicationController
   end
 
   def create
-
-    binding.pry
-    # saved_answer = []
-    # @questions = Question.all
-    # params[:answers].each do |question_id, answer_text|
-    #   @answer = Answer.new(
-    #     applicant_id: current_applicant.id,
-    #     question_id: question_id,
-    #     answer_text: answer_text
-    #   )
-    #     if @answer.save
-    #       saved_answer << @answer
-    #       # @unanswered = Answer.where(answer_text: "")
-    #       # flash[:warning] = '@unanswered questions are still blank - remember to finish!'
-    #     else
-    #       render("/answers/new")
-    #     end
-    #   end
-
     saved_answer = []
     @questions = Question.all
     params[:answers].each do |question_id, answer_text|
+      # binding.pry
       @answer = Answer.new(
         applicant_id: current_applicant.id,
         question_id: question_id,
         answer_text: answer_text
       )
+        if @answer.save
+          saved_answer << @answer
+        #   @unanswered = Answer.where(answer_text: "")
+        #   flash[:warning] = '@unanswered questions are still blank - remember to finish!'
+        end
       end
-      if @answer.save
-        saved_answer << @answer
-        @unanswered = Answer.where(answer_text: "")
-        flash[:warning] = '@unanswered questions are still blank - remember to finish!'
-      else
-        render("/answers/new")
-      end
-
-
-
     redirect_to "/answers"
     flash[:success] = "Progress Saved"
   end
