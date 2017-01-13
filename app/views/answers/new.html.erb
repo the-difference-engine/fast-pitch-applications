@@ -3,7 +3,12 @@
 <%= form_for :answers, url: { action: :create } do |f| %>
  <% @questions.each do |question| %>
     <%= f.label(question.question_text) %> <br>
+    <% if question.closed_question == true  %>
+   <input type="radio" name="answers[<%= question.id %>]" value="Yes"> Yes <br>
+   <input type="radio" name="answers[<%= question.id %>]" value="No"> No <br>
+    <% else %>
         <textarea name="answers[<%= question.id %>]"> </textarea>
+        <% end %>
   <br></br>
 <% end %>
 
