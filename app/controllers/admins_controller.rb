@@ -9,7 +9,7 @@ class AdminsController < ApplicationController
 
     def view
       @answers = Answer.where(applicant_id: params[:id]).order("id ASC")
-      @applicant = @answers.first.applicant_id
+      @applicant = @answers.first.applicant 
       @archived = @answers.first.archived
       @super_admin = current_admin.super_admin
     end

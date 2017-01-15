@@ -27,16 +27,11 @@ class AnswersController < ApplicationController
 
   def new
     @questions = Question.all
-  end
-
-  def new
-    @questions = Question.all
     @answers = Answer.where(applicant_id: current_applicant.id).order("id ASC")
-
   end
 
   def show
-
+    
   end
 
   def create
