@@ -10,8 +10,7 @@ class Answer < ApplicationRecord
     CSV.generate do |csv|
       csv << questions.map(&:question_text)
       applicants.each do |applicant|
-        csv << applicant.answers.order(:question_id).map(&:answer_text)
-        csv << applicant.sectors.map(&:name)
+        csv << applicant.answers.order(:question_id).map(&:answer_text) && applicant.sectors.map(&:name)
       end
     end
   end
