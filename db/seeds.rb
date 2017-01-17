@@ -37,4 +37,5 @@ Sector.create([
     {name: "Mental Health"},
     {name: "Pregnancy, Parenting"},
     {name: "Violence, Abuse"},
+    {name: "Other"}
   ])
