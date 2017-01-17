@@ -7,15 +7,7 @@ class Applicant < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  # after_create :create_default_answers
-  #
-  # # this needs to be called after a user is verfied
-  # def create_default_answers
-  #   Question.all.each do |question|
-  #     answer = Answer.new(applicant_id: self.id, question_id: question.id, answer_text: "")
-  #     answer.save
-  #   end
-  # end
+
 end
