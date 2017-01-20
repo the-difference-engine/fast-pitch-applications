@@ -11,5 +11,5 @@
 
 
 <% if @super_admin %>
-<%= link_to "Archive Application", "/admins/archive/#{@applicant}", :method => 'put' %><br>
+<%= link_to "Archive Application", "/admins/archive/#{@applicant.id}", :method => 'put' %><br>
 <% end %>
