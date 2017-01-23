@@ -1,6 +1,11 @@
-<h2> Admin Panel </h2>
+<center><h2> Admin Panel </h2></center>
+<%= form_tag("/search", method: :get) do %>
+  <%= label_tag(:search) %>
+  <%= text_field_tag(:search) %>
+  <%= submit_tag("Search") %>
+<% end %>
 
-<% if @super_admin %>
+<br><br><% if @super_admin %>
         <a href="/questions" class="btn btn-primary btn-lg">Edit Application</a>
         <a href="/admins/add_super_admin" class="btn btn-primary btn-lg">Add/Remove SuperAdmin</a></p>
 <% end %>
