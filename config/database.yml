@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: fast-pitch-app_production
+  database: Fast-Pitch 
   username: fast-pitch-app
   password: <%= ENV['FAST-PITCH-APP_DATABASE_PASSWORD'] %>

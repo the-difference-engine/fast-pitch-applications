@@ -5,26 +5,18 @@ class AdminsController < ApplicationController
     def index
       @super_admin = current_admin.super_admin
       @applicants = Applicant.all
-      @questions = Question.all
-      @answers = Answer.all
-      @org_names = []
-      @answers.each do |a|
-        if a.question_id == 457
-          @org_names << a
-        end
-      end
     end
 
     def view
       @answers = Answer.where(applicant_id: params[:id]).order("id ASC")
-      @applicant = @answers.first.applicant_id
+      @applicant = @answers.first.applicant
       @archived = @answers.first.archived
       @super_admin = current_admin.super_admin
     end
 
     def archive
       @answers = Answer.where(applicant_id: params[:id])
-      @archive = @answers.update(archived: true)
+      @archive = @answers.update(archive: true)
       redirect_to admins_path
       flash[:danger] = "Application Archived"
     end
@@ -52,12 +44,9 @@ class AdminsController < ApplicationController
   end
 
   def search
-    @answers = Answer.where("LOWER(name) LIKE ?", "%#{params[:search].downcase}%")
+    @answers = Answer.where("LOWER(answer_text) LIKE ?", "%#{params[:search].downcase}%")
     @super_admin = current_admin.super_admin
-    @applicants = Applicant.all
-    @questions = Question.all
-    @answers = Answer.all
-
+    @applicants = @answers.map(&:applicant)
     render 'index.html.erb'
   end
 end

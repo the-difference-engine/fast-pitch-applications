@@ -8,6 +8,11 @@
 <h4>This year's deadline is <b></b></h4>
 
 <p><i>Applications cannot be started or edited after the deadline.</i></p>
+<% if @applicant.sectors.count >= 1 %>
+<a href="/sectors" class="btn btn-primary btn-lg">Edit Sectors</a>
+<% else %>
+<a href="/sectors" class="btn btn-primary btn-lg">Add Sectors</a>
+<% end %>
 <br> <br>
 
 <% if @applicant.answers.count <= 0%>
@@ -16,4 +21,3 @@
 
 
 <%= render 'show' %>
-

@@ -1,8 +1,8 @@
 <%= div_for question, class: 'col-md-10' do %>
-  <br><h4><%= question.question_text %></h4></br>
+  <h4><%= question.question_text %></h4>
   <p>
      <%= link_to "Edit", edit_question_path(question), class: "btn btn-primary" %>
-     <%= link_to "Delete", question_path(question), class: "btn btn-danger", method: :delete  %>
+     <%= link_to "Delete", question_path(question), class: "btn btn-danger", method: :delete %>
   </p>
 
 <% end %>

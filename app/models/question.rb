@@ -1,7 +1,7 @@
 class Question < ApplicationRecord
   has_many :answers
   has_many :applicants, through: :answers
-  belongs_to :sector
+  # belongs_to :sector
 
   # This is where we write the word count checker method
   # validate for under word count

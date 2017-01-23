@@ -1,6 +1,8 @@
 class QuestionsController < ApplicationController
   before_filter :authenticate_super_admin, only: [:new, :create, :edit, :update, :destroy]
 
+require 'pry'
+
   def index
     @questions = Question.order("id")
   end
@@ -10,7 +12,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.new(question_params) # this will generate a question object
+    @question = Question.create(question_text: params[:question_text], closed_question: params[:closed_question]) # this will generate a question object
     if @question.save
       redirect_to questions_path
     else
@@ -23,16 +25,13 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    @question = Question.where(id: params[:id]).first
+    @question = Question.find_by(id: params[:id])
   end
 
   def update
-    @question = Question.where(id: params[:id]).first
-    if @question.update_attributes(question_params)
-      redirect_to questions_path
-    else
-      # render the edit form again
-    end
+    @question = Question.find_by(id: params[:id])
+    @question.update(question_text: params[:question_text])
+      redirect_to '/questions'
   end
 
   def destroy
@@ -58,6 +57,6 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:question_text, :answer)
+    params.require(:question).permit(:question_text, :closed_question)
   end
 end

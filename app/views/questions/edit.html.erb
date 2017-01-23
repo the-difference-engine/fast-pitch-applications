@@ -1,3 +1,10 @@
-<div class='col-md-8 col-md-offset-2'>
-  <%= render 'form' %>
-</div>
+<%= form_tag "/questions/#{@question.id}", method: :patch do %>
+  <%= text_field_tag(
+      :question_text,
+      params[:question_text],
+      placeholder: "#{@question.question_text}",
+      class: "form-control"
+  ) %>
+  <br></br>
+  <%= submit_tag("Update Question", class: "btn btn-info btn-lg") %>
+<% end %>

@@ -7,12 +7,13 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = '6b34f54bbb9bf4b29f0db7aa6955521353c17a495abe2273b03c809559e8ab540b7a953a3ae32d4a13af5e8563bd2ac2ca224e313d2d48b4de41a08ab1bb43da'
-
+  @sign_up_applicant = 
+  @sign_up_admin
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'fastpitch@svp.org'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
