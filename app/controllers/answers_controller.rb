@@ -22,7 +22,6 @@ class AnswersController < ApplicationController
       format.html
       format.csv { send_data @answers.to_csv, filename: "applications-#{Date.today}.csv" }
     end
-
   end
 
   def new
@@ -31,7 +30,6 @@ class AnswersController < ApplicationController
   end
 
   def show
-
   end
 
   def create
@@ -46,12 +44,10 @@ class AnswersController < ApplicationController
       )
         if @answer.save
           saved_answer << @answer
-        #   @unanswered = Answer.where(answer_text: "")
-        #   flash[:warning] = '@unanswered questions are still blank - remember to finish!'
         end
       end
     redirect_to "/answers"
-    if saved_answer.includes("")
+    if saved_answer.include?("")
       flash[:warning] = "Hey, Make sure to complete all questions before your deadline"
     else
       flash[:success] = "Progress Saved"
@@ -135,5 +131,4 @@ class AnswersController < ApplicationController
      end
    end
  end
-
 end
