@@ -1,6 +1,5 @@
 class AnswersController < ApplicationController
   skip_before_filter  :verify_authenticity_token
-  require 'pry'
 
   def index
     @applicant = current_applicant
@@ -38,7 +37,6 @@ class AnswersController < ApplicationController
     saved_answer = []
     @questions = Question.all
     params[:answers].each do |question_id, answer_text|
-      # binding.pry
       @answer = Answer.new(
         applicant_id: current_applicant.id,
         question_id: question_id,

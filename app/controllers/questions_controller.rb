@@ -1,8 +1,6 @@
 class QuestionsController < ApplicationController
   before_filter :authenticate_super_admin, only: [:new, :create, :edit, :update, :destroy]
 
-require 'pry'
-
   def index
     @questions = Question.order("id")
   end
