@@ -34,9 +34,12 @@ Rails.application.configure do
   config.action_mailer.default_url_options = {:host => 'yourdomain.com'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-  :address => "127.0.0.1",
-  :port    => 25,
-  :domain  => 'yourdomain.com'
+      :port           => ENV['MAILGUN_SMTP_PORT'],
+      :address        => ENV['MAILGUN_SMTP_SERVER'],
+      :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+      :password       => ENV['MAILGUN_SMTP_PASSWORD'],
+      :domain         => 'https://pure-bayou-80307.herokuapp.com', #eg: 'yourappname.herokuapp.com'
+      :authentication => :plain,
   }
 
   # Specifies the header that your server uses for sending files.

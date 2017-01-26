@@ -1,8 +1,2 @@
-<p>Welcome <%= @applicant.org_name %>!,
-<br>
-</br>
-Thank you for initiating an application for SVP Chicago’s Fast Pitch. You will be able to edit your application until *noon on Friday, January 27*. Only complete applications will be considered. If you have questions, please contact colleen@svpchicago.org.</p>
-
-<p>You can confirm your account email through the link below:</p>
-
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+Welcome, <%= @applicant.org_name %>
+Login here: <%= @url %>
