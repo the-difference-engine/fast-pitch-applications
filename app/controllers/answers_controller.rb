@@ -49,11 +49,8 @@ class AnswersController < ApplicationController
         end
       end
     redirect_to "/answers"
-    if saved_answer.includes("")
-      flash[:warning] = "Hey, Make sure to complete all questions before your deadline"
     else
       flash[:success] = "Progress Saved"
-    end
   end
 
   def sectors
