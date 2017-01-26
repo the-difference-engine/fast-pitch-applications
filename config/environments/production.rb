@@ -31,14 +31,14 @@ Rails.application.configure do
   # config.action_controller.asset_host = 'http://assets.example.com'
 
   # Brandon: Added for mailer (Change yourdomain.com strings, :address, & possibly the port)
-  config.action_mailer.default_url_options = {:host => 'yourdomain.com'}
+  config.action_mailer.default_url_options = {:host => 'pure-bayou-80307.herokuapp.com'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
       :port           => ENV['MAILGUN_SMTP_PORT'],
       :address        => ENV['MAILGUN_SMTP_SERVER'],
       :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
       :password       => ENV['MAILGUN_SMTP_PASSWORD'],
-      :domain         => 'https://pure-bayou-80307.herokuapp.com', #eg: 'yourappname.herokuapp.com'
+      :domain         => 'pure-bayou-80307.herokuapp.com', #eg: 'yourappname.herokuapp.com'
       :authentication => :plain,
   }
 
