@@ -4,7 +4,13 @@ class AdminsController < ApplicationController
 
     def index
       @super_admin = current_admin.super_admin
-      @applicants = Applicant.joins(:answers).where("answers.count > 0")
+      @all_applicants = Applicant.all
+      @applicants = []
+      @all_applicants.each do |a|
+        if a.answers.count > 0
+          @applicants << a
+        end
+      end
     end
 
     def view
