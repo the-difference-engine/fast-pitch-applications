@@ -11,7 +11,7 @@ class AnswersController < ApplicationController
      @answers = Answer.all
    end
     @current_date  = Time.zone.now
-    @deadline_date = Time.zone.local(2017, 1, 27, 12, 00)
+    @deadline_date = Time.zone.local(2018, 1, 27, 12, 00)
     if @current_date.to_i > @deadline_date.to_i
       redirect_to ''
       flash[:notice] = 'Deadline for Applications has been reached.'

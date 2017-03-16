@@ -16,7 +16,7 @@ class AdminsController < ApplicationController
 
     def archive
       @answers = Answer.where(applicant_id: params[:id])
-      @archive = @answers.update(archive: true)
+      @archive = @answers.update(archived: true)
       redirect_to admins_path
       flash[:danger] = "Application Archived"
     end
