@@ -31,12 +31,15 @@ Rails.application.configure do
   # config.action_controller.asset_host = 'http://assets.example.com'
 
   # Brandon: Added for mailer (Change yourdomain.com strings, :address, & possibly the port)
-  config.action_mailer.default_url_options = {:host => 'yourdomain.com'}
+  config.action_mailer.default_url_options = {:host => 'pure-bayou-80307.herokuapp.com'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-  :address => "127.0.0.1",
-  :port    => 25,
-  :domain  => 'yourdomain.com'
+      :port           => ENV['MAILGUN_SMTP_PORT'],
+      :address        => ENV['MAILGUN_SMTP_SERVER'],
+      :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+      :password       => ENV['MAILGUN_SMTP_PASSWORD'],
+      :domain         => 'pure-bayou-80307.herokuapp.com', #eg: 'yourappname.herokuapp.com'
+      :authentication => :plain,
   }
 
   # Specifies the header that your server uses for sending files.

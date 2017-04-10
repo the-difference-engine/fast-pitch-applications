@@ -19,7 +19,7 @@ class Answer < ApplicationRecord
          string = ""
          sect.each do |sect_list |
              sec = Sector.find_by(id: sect_list.sector_id)
-              string = string + sec.name_test + ", "
+              string = string + sec.name + ", "
          end
          row << string
 
