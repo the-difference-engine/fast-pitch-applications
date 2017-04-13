@@ -4,7 +4,7 @@
 <%= form_tag "/answers/#{@answer.id}", method: :patch do %>
   <%= text_field_tag(
       :answer_text,
-      params[:answer_text],
+      @answer.answer_text,
       placeholder: "#{@answer.answer_text}",
       class: "form-control"
   ) %>
