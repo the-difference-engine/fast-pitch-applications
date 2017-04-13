@@ -1,6 +1,8 @@
 class AdminsController < ApplicationController
+  # include Devise::Models::Recoverable
+
   before_action :authenticate_admin!
-  before_action :authenticate_super_admin, only: [:all_ratings, :add_super_admin, :archive]
+  before_action :authenticate_super_admin, only: [:all_ratings, :add_super_admin, :archive, :new, :create]
 
     def index
       @super_admin = current_admin.super_admin
@@ -54,5 +56,29 @@ class AdminsController < ApplicationController
     @super_admin = current_admin.super_admin
     @applicants = @answers.map(&:applicant)
     render 'index.html.erb'
+  end
+
+  def new
+    @admin = Admin.new
+  end
+
+  def create
+    @admin = Admin.new(admin_params)
+    if @admin.save
+      flash[:success] = 'Admin created!'
+      @admin.send_reset_password_instructions
+      redirect_to new_admin_path
+    else
+      flash[:danger] = @admin.errors.full_messages
+      render :new
+    end
+  end
+
+  private
+
+  def admin_params
+    password = Faker::Internet.password(10, 20)
+    params.require(:admin).permit(:name, :email, :super_admin)
+          .merge(password: password, password_confirmation: password)
   end
 end

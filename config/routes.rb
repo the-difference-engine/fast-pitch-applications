@@ -2,21 +2,19 @@ Rails.application.routes.draw do
   devise_for :applicants
   resources :answers
   resources :questions
-  devise_for :admins
+  devise_for :admins, controllers: { registrations: 'admin/registrations' }
 
-  get '/' => 'welcome#index'
+  root to: 'welcome#index'
 
   get 'ratings/new' => 'ratings#new'
   post 'ratings' => 'ratings#create'
   get 'ratings/:id' => 'ratings#show'
 
-  get '/admins' => 'admins#index'
+  resources :admins, only: %i(index update create new)
   get '/admins/add_super_admin' => 'admins#add_super_admin'
-  patch '/admins/:id/update' => 'admins#update'
   get '/admins/view/:id' => 'admins#view'
   put 'admins/archive/:id' => 'admins#archive'
   get '/search' => 'admins#search'
-
 
   get '/search' => 'admins#search'
 

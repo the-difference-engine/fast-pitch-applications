@@ -5,9 +5,9 @@
   <ul class="list-unstyled">
   <p> <%= admin.email %>
     <% if !admin.super_admin %>
-      <br><br><%= link_to "Make SuperAdmin", "/admins/#{admin.id}/update", class: "btn btn-primary", method: :patch%></br>
+      <br><br><%= link_to "Make SuperAdmin", "/admins/#{admin.id}", class: "btn btn-primary", method: :patch%></br>
     <% else %>
-      <br><br><%= link_to "Remove SuperAdmin", "/admins/#{admin.id}/update", class: "btn btn-primary", method: :patch%></br>
+      <br><br><%= link_to "Remove SuperAdmin", "/admins/#{admin.id}", class: "btn btn-primary", method: :patch%></br>
     <% end %>
   </p>
 </div>
