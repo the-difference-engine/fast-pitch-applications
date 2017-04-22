@@ -1,4 +1,4 @@
-<% if @archive %>
+<% if @applicant.archived? %>
   <p><i><b>This application has been archived and will not move forward</b></i></p>
 <% end %>
 
@@ -10,6 +10,6 @@
 <% end %>
 
 
-<% if @super_admin %>
+<% if @super_admin && !@applicant.archived? %>
 <%= link_to "Archive Application", "/admins/archive/#{@applicant.id}", :method => 'put' %><br>
 <% end %>

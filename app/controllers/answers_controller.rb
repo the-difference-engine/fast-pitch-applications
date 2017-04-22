@@ -119,16 +119,5 @@ class AnswersController < ApplicationController
       render 'edit'
     end
   end
-
-  def archive
-   @answers = Answer.where(applicant_id: params[:applicant_id])
-   @answers.each do |a|
-     if a.update(archived: true)
-       redirect_to '/admins'
-     else
-       render '/answers/edit'
-     end
-   end
  end
-
 end

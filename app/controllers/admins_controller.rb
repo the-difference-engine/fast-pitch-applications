@@ -16,15 +16,14 @@ class AdminsController < ApplicationController
     end
 
     def view
-      @answers = Answer.where(applicant_id: params[:id]).order("id ASC")
-      @applicant = @answers.first.applicant
-      @archive = @answers.first.archived
+      @applicant = Applicant.find(params[:id])
+      @answers = @applicant.answers.order(id: :asc)
       @super_admin = current_admin.super_admin
     end
 
     def archive
-      @answers = Answer.where(applicant_id: params[:id])
-      @archive = @answers.update(archived: true)
+      applicant = Applicant.find(params[:id])
+      applicant.update(archived: true)
       redirect_to admins_path
       flash[:success] = "Application Archived"
     end
