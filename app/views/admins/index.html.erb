@@ -1,7 +1,9 @@
 <center><h2> Admin Panel </h2></center>
-<br><br><% if @super_admin %>
-        <a href="/questions" class="btn btn-primary btn-lg">Edit Application</a>
-        <a href="/admins/add_super_admin" class="btn btn-primary btn-lg">Add/Remove SuperAdmin</a></p>
+<br><br>
+<% if @super_admin %>
+  <a href="/questions" class="btn btn-primary btn-lg">Edit Application</a>
+  <a href="/admins/add_super_admin" class="btn btn-primary btn-lg">Add/Remove SuperAdmin</a>
+  <%= link_to 'Create Admin', new_admin_path, class: 'btn btn-primary btn-lg' %>
 <% end %>
 
 <h4><%= link_to "Download all applications as CSV", answers_path(format: "csv") %> </h4>
