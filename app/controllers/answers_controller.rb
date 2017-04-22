@@ -119,5 +119,4 @@ class AnswersController < ApplicationController
       render 'edit'
     end
   end
- end
 end
